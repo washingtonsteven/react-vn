@@ -1,55 +1,27 @@
-import React, { Component, Fragment } from 'react';
-import InputModal from './InputModal';
+import React, { Component } from 'react';
 
 const restartNodeLink = {
-  content:'Restart'
+  content:'Restart',
+  restart:true
 }
 
 class NodeLink extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
-
-    this.nodeClicked = this.nodeClicked.bind(this);
-    this.nodeInputComplete = this.nodeInputComplete.bind(this);
+    this.nodeLinkClicked = this.nodeLinkClicked.bind(this);
   }
 
-  nodeClicked() {
-    if (this.props.nodeLink.type === "input") {
-      this.setState({
-        ...this.state,
-        showInput:true
-      });
-    } else {
-      this.followNodeLink();
-    }
-  }
-
-  followNodeLink(additionalData = {}) {
-    this.props.nodeClicked && this.props.nodeClicked({...this.props.nodeLink, ...additionalData});
-  }
-
-  nodeInputComplete(inputValue) {
-    this.setState({
-      ...this.state,
-      showInput:false
-    }, () => this.followNodeLink({ inputValue }));
+  nodeLinkClicked() {
+    this.props.nodeLinkClicked && this.props.nodeLinkClicked({ ...this.props.nodeLink, restart:this.props.restart });
   }
 
   render() {
     const nodeLink = this.props.restart ? restartNodeLink : this.props.nodeLink || {};
     return (
-      <Fragment>
-        <button className="node-link" onClick={this.nodeClicked}>
-          {nodeLink.content}
-        </button>
-        {
-          nodeLink.type === "input" && this.state.showInput ?
-          <InputModal onInputComplete={this.nodeInputComplete} nodeLinkData={this.props.nodeLink} />
-          : null
-        }
-      </Fragment>
+      <button className="node-link" onClick={this.nodeLinkClicked}>
+        {nodeLink.content}
+      </button>
     )
   }
 }

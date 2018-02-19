@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import './Story.scss';
 
 import NodeLink from './NodeLink';
+import InputNodeLink from './InputNodeLink';
 
 const errorNode = {
   content:'there\'s been an error.',
   error:true
-}
+};
+
+const nodeLinkTypes = {
+  "input":InputNodeLink
+};
 
 class Story extends Component {
   constructor(props) {
@@ -49,7 +54,9 @@ class Story extends Component {
   }
 
   goToNode(nodeLink) {
-    if (nodeLink.type === "input" && nodeLink.targetVariable) {
+    if (nodeLink.restart) {
+      this.followNodeLink({ node:this.state.rootNode.id });
+    } else if (nodeLink.type === "input" && nodeLink.targetVariable) {
       this.setState({
         ...this.state,
         customData:{
@@ -78,6 +85,13 @@ class Story extends Component {
       });
   }
 
+  replaceVariables(content) {
+    const variableRegEx = new RegExp(/#{(\S+)}/);
+    return content.replace(variableRegEx, (match, varName) => {
+      return this.state.customData[varName] || match;
+    });
+  }
+
   render() {
     const currentNode = this.state.currentNode || errorNode;
 
@@ -85,13 +99,13 @@ class Story extends Component {
       <div className="story">
         <div className="node">
           <div className="node-content">
-            {currentNode.content}
+            {this.replaceVariables(currentNode.content)}
           </div>
           <div className="node-links">
             {
               currentNode.next ?
-              currentNode.next.map(n => <NodeLink nodeLink={n} nodeClicked={this.goToNode} key={btoa(`${n.node}-${n.content}`)} />)
-              : <NodeLink restart nodeClicked={() => this.goToNode({node:this.state.rootNode.id})} />
+              currentNode.next.map(n => React.createElement(nodeLinkTypes[n.type] || NodeLink, { nodeLink:n, nodeLinkClicked:this.goToNode, key:btoa(`${n.node}-${n.content}`) }))
+              : <NodeLink restart nodeLinkClicked={this.goToNode} />
             }
           </div>
         </div>

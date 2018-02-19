@@ -22,6 +22,7 @@ class InputModal extends Component {
   render() {
     return (
       <div className="input-modal">
+        <span className="prompt">{this.props.nodeLink.prompt}</span>
         <input type="text" onChange={this.updateInput} />
         <button onClick={this.onInputComplete}>Submit</button>
       </div>
