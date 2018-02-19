@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import './Story.scss';
 
+import NodeLink from './NodeLink';
+
 const errorNode = {
   content:'there\'s been an error.',
   error:true
-}
-
-const restartNodeLink = {
-  content:'Restart'
 }
 
 class Story extends Component {
@@ -50,24 +48,34 @@ class Story extends Component {
     });
   }
 
-  goToNode(e) {
-    this.getNode(e.target.dataset.nodeLinkId)
+  goToNode(nodeLink) {
+    if (nodeLink.type === "input" && nodeLink.targetVariable) {
+      this.setState({
+        ...this.state,
+        customData:{
+          ...this.state.customData || {},
+          [nodeLink.targetVariable]:nodeLink.inputValue
+        }
+      }, () => this.followNodeLink(nodeLink));
+    } else {
+      this.followNodeLink(nodeLink);
+    }
+  }
+
+  followNodeLink(nodeLink) {
+    this.getNode(nodeLink.node)
       .then(currentNode => {
         this.setState({
           ...this.state,
           currentNode
         })
+      })
+      .catch(() => {
+        this.setState({
+          ...this.state,
+          currentNode:null
+        });
       });
-  }
-
-  renderNodeLink(nodeLink) {
-    if (!nodeLink.node) nodeLink.node = this.state.rootNode.id;
-
-    return (
-      <button className="node-link" onClick={this.goToNode} data-node-link-id={nodeLink.node} key={btoa(`${nodeLink.node}-${nodeLink.content}`)}>
-        {nodeLink.content}
-      </button>
-    );
   }
 
   render() {
@@ -82,8 +90,8 @@ class Story extends Component {
           <div className="node-links">
             {
               currentNode.next ?
-              currentNode.next.map(n => this.renderNodeLink(n))
-              : this.renderNodeLink(restartNodeLink)
+              currentNode.next.map(n => <NodeLink nodeLink={n} nodeClicked={this.goToNode} key={btoa(`${n.node}-${n.content}`)} />)
+              : <NodeLink restart nodeClicked={() => this.goToNode({node:this.state.rootNode.id})} />
             }
           </div>
         </div>

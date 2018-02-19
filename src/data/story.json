@@ -18,11 +18,18 @@
     },
     {
       "id":"2",
-      "content":"This is it. Page 2. Good job."
+      "content":"This is it. Page 2. Good job.",
+      "next":[
+       { "content":"My Name is...", "node":"4", "type":"input", "targetVariable":"name", "prompt":"Enter your name" } 
+      ]
     },
     {
       "id":"3",
       "content":"Page 3. Y O U  D I E D. Game over."
+    },
+    {
+      "id":"4",
+      "content":"Thank you for telling me that #{name}"
     }
   ]
 }
