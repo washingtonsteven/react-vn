@@ -20,40 +20,44 @@ class Story extends Component {
       const rootNode = this.props.storyData.nodes.find(v => v.root);
       this.state = {
         rootNode,
-        currentNode:rootNode
+        currentNode:rootNode,
+        keyedNodes:{
+          [rootNode.id]:rootNode
+        }
       }
     }
   }
 
   getNode(id) {
-    if (this.state.keyedNodes && this.state.keyedNodes[id]) {
-      return this.state.keyedNodes[id];
-    }
+    return new Promise((resolve, reject) => {
+      if (this.state.keyedNodes && this.state.keyedNodes[id]) {
+        return resolve(this.state.keyedNodes[id]);
+      }
 
-    const foundNode = this.props.storyData.nodes.find(v => v.id === id);
-
-    if (foundNode) {
-      this.setState({
-        ...this.state,
-        keyedNodes:{
-          ...this.keyedNodes,
-          [id]:foundNode
-        }
-      });
-      return foundNode; // should this come in the setState callback? Promisify setState/getNode?
-    }
-
-    // can't find it ¯\_(ツ)_/¯
-    return null;
+      const foundNode = this.props.storyData.nodes.find(v => v.id === id);
+      if (foundNode) {
+        this.setState({
+          ...this.state,
+          keyedNodes:{
+            ...this.state.keyedNodes,
+            [foundNode.id]:foundNode
+          }
+        }, () => { resolve(foundNode); });
+      } else {
+        // can't find it ¯\_(ツ)_/¯
+        reject();
+      }
+    });
   }
 
   goToNode(e) {
-    const node = this.getNode(e.target.dataset.nodeLinkId);
-
-    this.setState({
-      ...this.state,
-      currentNode:node
-    });
+    this.getNode(e.target.dataset.nodeLinkId)
+      .then(currentNode => {
+        this.setState({
+          ...this.state,
+          currentNode
+        })
+      });
   }
 
   renderNodeLink(nodeLink) {
