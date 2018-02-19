@@ -1,0 +1,28 @@
+{
+  "nodes":[
+    {
+      "root":true,
+      "id":"0",
+      "content":"This is page 0",
+      "next":[
+        { "content":"Go on...", "node":"1" }
+      ]
+    },
+    {
+      "id":"1",
+      "content":"This is page 1",
+      "next":[
+       { "content":"Page 2?", "node":"2" },
+       { "content":"...or Page 3?", "node":"3" } 
+      ]
+    },
+    {
+      "id":"2",
+      "content":"This is it. Page 2. Good job."
+    },
+    {
+      "id":"3",
+      "content":"Page 3. Y O U  D I E D. Game over."
+    }
+  ]
+}
