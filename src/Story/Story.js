@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import './Story.scss';
 
 const errorNode = {
-  "content":"there's been an error.",
-  "error":true
+  content:'there\'s been an error.',
+  error:true
 }
 
 const restartNodeLink = {
-  "content":"Restart"
+  content:'Restart'
 }
 
 class Story extends Component {
