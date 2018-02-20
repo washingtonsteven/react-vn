@@ -26,7 +26,7 @@ class App extends Component {
     const idx = storyData.nodes.findIndex(n => n.id === node.id);
     if (idx >= 0 && idx < this.state.storyData.nodes.length) {
       this.setState(prevState => {
-        const nodes = [...this.state.storyData.nodes];
+        const nodes = [...prevState.storyData.nodes];
         nodes[idx] = node;
         return {
           ...prevState,
