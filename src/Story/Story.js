@@ -4,6 +4,8 @@ import './Story.scss';
 import NodeLink from './NodeLink';
 import InputNodeLink from './InputNodeLink';
 
+import { replaceVariables } from '@@/util';
+
 const errorNode = {
   content:'there\'s been an error.',
   error:true
@@ -85,13 +87,6 @@ class Story extends Component {
       });
   }
 
-  replaceVariables(content) {
-    const variableRegEx = new RegExp(/#{(\S+)}/);
-    return content.replace(variableRegEx, (match, varName) => {
-      return this.state.customData[varName] || match;
-    });
-  }
-
   render() {
     const currentNode = this.state.currentNode || errorNode;
 
@@ -99,7 +94,7 @@ class Story extends Component {
       <div className="story">
         <div className="node">
           <div className="node-content">
-            {this.replaceVariables(currentNode.content)}
+            {replaceVariables(currentNode.content, this.state.customData)}
           </div>
           <div className="node-links">
             {
