@@ -25,17 +25,17 @@ class App extends Component {
   nodeUpdated(node) {
     const idx = storyData.nodes.findIndex(n => n.id === node.id);
     if (idx >= 0 && idx < this.state.storyData.nodes.length) {
-      this.setState({
-        ...this.state,
-        storyData:{
-          ...this.state.storyData,
-          nodes:((arr, i, replacement) => {
-            const copy = [...arr];
-            copy[i] = replacement;
-            return copy;
-          })(this.state.storyData.nodes, idx, node)
+      this.setState(prevState => {
+        const nodes = [...this.state.storyData.nodes];
+        nodes[idx] = node;
+        return {
+          ...prevState,
+          storyData:{
+            ...prevState.storyData,
+            nodes
+          }
         }
-      });
+      })
     }
   }
 

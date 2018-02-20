@@ -21,17 +21,17 @@ class NodeEditor extends Component {
   }
   
   onLinkChange(linkIndex, link) {
-    this.setState({
-      ...this.state,
-      node:{
-        ...this.state.node,
-        next:((arr, i, replacement) => {
-          const copy = [...arr];
-          copy[i] = replacement;
-          return copy;
-        })(this.state.node.next, linkIndex, link)
+    this.setState(prevState => {
+      const next = [...this.state.node.next];
+      next[linkIndex] = link;
+      return {
+        ...prevState,
+        node: {
+          ...prevState.node,
+          next
+        }
       }
-    })
+    });
   }
 
   onIdChange(e) {
