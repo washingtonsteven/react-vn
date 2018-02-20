@@ -20,7 +20,7 @@ class NodeLink extends Component {
     const nodeLink = this.props.restart ? restartNodeLink : this.props.nodeLink || {};
     return (
       <button className="node-link" onClick={this.nodeLinkClicked}>
-        {nodeLink.content}
+        {nodeLink.content || '\u00bb'}
       </button>
     )
   }

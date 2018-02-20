@@ -25,11 +25,18 @@
     },
     {
       "id":"3",
-      "content":"Page 3. Y O U  D I E D. Game over."
+      "content":"Page 3. Y O U  D I E D. Game over.",
+      "next":[
+       { "node":"5" } 
+      ]
     },
     {
       "id":"4",
       "content":"Thank you for telling me that, #{name}. Is your age: #{age}?"
+    },
+    {
+      "id":"5",
+      "content":"But death is not the end."
     }
   ]
 }
