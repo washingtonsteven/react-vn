@@ -5,7 +5,7 @@ import NodeEditor from './NodeEditor';
 const ExportButton = props => (
   <a 
     id="menu-export" 
-    href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(props.data))}`}
+    href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(props.data, null, 1))}`}
     download='story.json'
   >
     Export
