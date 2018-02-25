@@ -3,6 +3,8 @@ import Story from './Story/Story';
 import StoryEditor from './StoryEditor/StoryEditor';
 import storyData from './data/story.json';
 
+import './App.scss';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,21 +24,22 @@ class App extends Component {
     });
   }
 
-  nodeUpdated(node) {
-    const idx = storyData.nodes.findIndex(n => n.id === node.id);
-    if (idx >= 0 && idx < this.state.storyData.nodes.length) {
-      this.setState(prevState => {
-        const nodes = [...this.state.storyData.nodes];
-        nodes[idx] = node;
-        return {
-          ...prevState,
-          storyData:{
-            ...prevState.storyData,
-            nodes
-          }
+  nodeUpdated(node) { console.log(`updateNode: ${JSON.stringify(node)}`);
+    let idx = this.state.storyData.nodes.findIndex(n => n.id === node.id);
+
+    if (!idx || idx < 0) idx = this.state.storyData.nodes.length;
+
+    this.setState(prevState => {
+      const nodes = [...this.state.storyData.nodes];
+      nodes[idx] = node;
+      return {
+        ...prevState,
+        storyData:{
+          ...prevState.storyData,
+          nodes
         }
-      })
-    }
+      }
+    });
   }
 
   render() {

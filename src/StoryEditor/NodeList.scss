@@ -1,0 +1,12 @@
+.node-list {
+  margin:35px 0;
+  
+  .node {
+    width:50%;
+    padding:5px 20px;
+    cursor:pointer;
+    border:solid 1px black;
+    border-radius:3px;
+    margin-bottom:25px;
+  }
+}

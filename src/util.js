@@ -11,3 +11,5 @@ export const excerpt = str => {
 }
 
 export const nullFunc = () => {}
+
+export const generateId = () => `_${Math.random().toString(36).substr(2,9)}`;

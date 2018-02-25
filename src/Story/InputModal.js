@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { modalNode } from '@@';
 
 class InputModal extends Component {
   constructor(props) {
@@ -20,13 +22,15 @@ class InputModal extends Component {
   }
 
   render() {
-    return (
+    const modal = (
       <div className="input-modal">
         <span className="prompt">{this.props.nodeLink.prompt}</span>
         <input type="text" onChange={this.updateInput} />
         <button onClick={this.onInputComplete}>Submit</button>
       </div>
-    )
+    );
+
+    return ReactDOM.createPortal(modal, modalNode);
   }
 }
 

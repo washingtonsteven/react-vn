@@ -98,7 +98,7 @@ class Story extends Component {
           </div>
           <div className="node-links">
             {
-              currentNode.next ?
+              currentNode.next && currentNode.next.length ?
               currentNode.next.map(n => React.createElement(nodeLinkTypes[n.type] || NodeLink, { nodeLink:n, nodeLinkClicked:this.goToNode, key:btoa(`${n.node}-${n.content}`) }))
               : <NodeLink restart nodeLinkClicked={this.goToNode} />
             }

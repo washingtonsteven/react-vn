@@ -1,0 +1,26 @@
+.node-editor {
+  & > * {
+    display:block;
+    margin:20px 0;
+  }
+
+  input.node-id {
+    cursor:not-allowed;
+  }
+
+  input, textarea {
+    width:100%;
+    border:solid 1px black;
+    font-size:1rem;
+    padding:5px 10px;
+  }
+
+  textarea {
+    min-height:450px;
+    padding:20px;
+  }
+
+  .node-link {
+
+  }
+}

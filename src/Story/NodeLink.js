@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 const restartNodeLink = {
   content:'Restart',
@@ -18,10 +18,14 @@ class NodeLink extends Component {
 
   render() {
     const nodeLink = this.props.restart ? restartNodeLink : this.props.nodeLink || {};
+
     return (
-      <button className="node-link" onClick={this.nodeLinkClicked}>
-        {nodeLink.content || '\u00bb'}
-      </button>
+      <Fragment>
+        <button className="node-link" onClick={this.nodeLinkClicked}>
+          {nodeLink.content || '\u00bb'}
+        </button>
+        { this.props.children && this.props.children(this.props) }
+      </Fragment>
     )
   }
 }

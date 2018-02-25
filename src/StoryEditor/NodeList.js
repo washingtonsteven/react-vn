@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { excerpt } from '@@/util';
 
+import "./NodeList.scss";
+
 const NodeListItem = props => (
   <div className="node" onClick={() => props.onClick(props.node)}>
     {props.node.id} - {excerpt(props.node.content)}

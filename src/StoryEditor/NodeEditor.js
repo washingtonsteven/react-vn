@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './NodeEditor.scss';
 
 const NodeLinkEditor = props => (
   <div className="node-link">
@@ -14,6 +15,7 @@ class NodeEditor extends Component {
     this.onLinkChange = this.onLinkChange.bind(this);
     this.onIdChange = this.onIdChange.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
+    this.addBlankNodeLink = this.addBlankNodeLink.bind(this);
 
     this.state = {
       node:props.node
@@ -22,7 +24,7 @@ class NodeEditor extends Component {
   
   onLinkChange(linkIndex, link) {
     this.setState(prevState => {
-      const next = [...this.state.node.next];
+      const next = [...this.state.node.next || []];
       next[linkIndex] = link;
       return {
         ...prevState,
@@ -32,6 +34,11 @@ class NodeEditor extends Component {
         }
       }
     });
+  }
+
+  addBlankNodeLink() {
+    const idx = this.state.node.next ? this.state.node.next.length : 0;
+    this.onLinkChange(idx, {content:"", node:""});
   }
 
   onIdChange(e) {
@@ -57,12 +64,13 @@ class NodeEditor extends Component {
   render() {
     return (
       <div className="node-editor">
-        <input type="text" value={this.state.node.id} onChange={this.onIdChange} readOnly />
+        <input type="text" className="node-id" value={this.state.node.id} onChange={this.onIdChange} readOnly />
         <textarea onChange={this.onContentChange} value={this.state.node.content}></textarea>
         {
           this.state.node && this.state.node.next &&
           this.state.node.next.map((link, i) => <NodeLinkEditor link={link} linkIndex={i} onChange={this.onLinkChange} key={btoa(`${i}`)} />)
         }
+        <button onClick={this.addBlankNodeLink}>Add New Link</button>
         <button onClick={() => { this.props.onUpdate && this.props.onUpdate(this.state.node) }}>Save</button>
         <button onClick={() => { this.props.onExit && this.props.onExit() }}>Back to List</button>
       </div>

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import NodeLink from './NodeLink';
 import InputModal from './InputModal';
 
@@ -18,7 +18,7 @@ class InputNodeLink extends Component {
     });
   }
 
-  inputModalComplete(inputValue) {
+  inputModalComplete(inputValue) { console.log('imc: '+inputValue);
     this.setState({
       ...this.state,
       showInput:false
@@ -31,14 +31,9 @@ class InputNodeLink extends Component {
 
   render() {
     return (
-      <Fragment>
-        <NodeLink nodeLinkClicked={this.nodeLinkClicked} nodeLink={this.props.nodeLink} />
-        { 
-          this.state.showInput ?
-          <InputModal onInputComplete={this.inputModalComplete} nodeLink={this.props.nodeLink} />
-          : null
-        }
-      </Fragment>
+      <NodeLink nodeLinkClicked={this.nodeLinkClicked} nodeLink={this.props.nodeLink}>
+        {() => this.state.showInput && <InputModal onInputComplete={this.inputModalComplete} nodeLink={this.props.nodeLink} />}
+      </NodeLink>
     )
   }
 }

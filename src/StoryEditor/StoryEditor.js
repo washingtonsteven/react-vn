@@ -1,12 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import NodeList from './NodeList';
 import NodeEditor from './NodeEditor';
+
+import { generateId } from '@@/util';
+
+import "./StoryEditor.scss";
+
+const blankNode = {
+  content:"",
+  next:[]
+}
 
 const ExportButton = props => (
   <a 
     id="menu-export" 
     href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(props.data, null, 1))}`}
     download='story.json'
+    className="button"
+    role="button"
   >
     Export
   </a>
@@ -47,7 +58,10 @@ class StoryEditor extends Component {
         {
           this.state.editing && this.state.currentNode ?
           <NodeEditor node={this.state.currentNode} onExit={this.exitNodeEditor} onUpdate={node => { this.props.onNodeUpdated && this.props.onNodeUpdated(node) }} /> :
-          <NodeList list={this.props.storyData.nodes} onNodeSelected={this.onNodeSelected} />
+          <Fragment>
+            <NodeList list={this.props.storyData.nodes} onNodeSelected={this.onNodeSelected} />
+            <button onClick={() => this.props.onNodeUpdated && this.props.onNodeUpdated({...blankNode, id:generateId()})}>Add New Node</button>
+          </Fragment>
         }
       </div>
     )
