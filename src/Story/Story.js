@@ -33,6 +33,12 @@ class Story extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (JSON.stringify(nextProps) !== JSON.stringify(this.props)) return true;
+    if (JSON.stringify(this.state.curentNode) !== JSON.stringify(nextState.currentNode)) return true;
+    return false;
+  }
+
   getNode(id) {
     return new Promise((resolve, reject) => {
       if (this.state.keyedNodes && this.state.keyedNodes[id]) {

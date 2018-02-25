@@ -30,7 +30,7 @@ class App extends Component {
     if ((!idx && idx !== 0)|| idx < 0) idx = this.state.storyData.nodes.length;
 
     this.setState(prevState => {
-      const nodes = [...this.state.storyData.nodes];
+      const nodes = [...prevState.storyData.nodes];
       nodes[idx] = node;
       return {
         ...prevState,
