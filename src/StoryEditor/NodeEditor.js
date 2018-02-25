@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
+import { excerpt } from '@@/util';
 import './NodeEditor.scss';
 
 const NodeLinkEditor = props => (
   <div className="node-link">
-    <input type="text" defaultValue={props.link.content} onChange={(e) => props.onChange(props.linkIndex, {...props.link, content:e.target.value})} />
-    <input type="text" defaultValue={props.link.node} onChange={(e) => props.onChange(props.linkIndex, {...props.link, node:e.target.value})} />
+    <label htmlFor='node-link-content'>
+      <span>NodeLink text</span>
+      <input type="text" name='node-link-content' defaultValue={props.link.content} onChange={(e) => props.onChange(props.linkIndex, {...props.link, content:e.target.value})} />
+    </label>
+    <label htmlFor='node-link-node-target'>
+      <span>Target Node</span>
+      <select name='node-link-node-target' defaultValue={props.link.node} onChange={(e) => props.onChange(props.linkIndex, {...props.link, node:e.target.value})}>
+        {props.storyData.nodes.map(node => <option value={node.id} key={node.id}>{excerpt(node.content)}</option>)}
+      </select>
+    </label>
   </div>
 );
 
@@ -68,10 +77,11 @@ class NodeEditor extends Component {
         <textarea onChange={this.onContentChange} value={this.state.node.content}></textarea>
         {
           this.state.node && this.state.node.next &&
-          this.state.node.next.map((link, i) => <NodeLinkEditor link={link} linkIndex={i} onChange={this.onLinkChange} key={btoa(`${i}`)} />)
+          this.state.node.next.map((link, i) => <NodeLinkEditor link={link} storyData={this.props.storyData} linkIndex={i} onChange={this.onLinkChange} key={btoa(`${i}`)} />)
         }
         <button onClick={this.addBlankNodeLink}>Add New Link</button>
-        <button onClick={() => { this.props.onUpdate && this.props.onUpdate(this.state.node) }}>Save</button>
+        <button onClick={() => { this.props.onUpdate && this.props.onUpdate(this.state.node) }}>Save & Continue</button>
+        <button onClick={() => { this.props.onUpdate && this.props.onUpdate(this.state.node); this.props.onExit && this.props.onExit() }}>Save & Quit</button>
         <button onClick={() => { this.props.onExit && this.props.onExit() }}>Back to List</button>
       </div>
     );

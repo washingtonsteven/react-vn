@@ -7,7 +7,7 @@ export const replaceVariables = (content, customData) => {
 
 export const EXCERPT_LENGTH = 15;
 export const excerpt = str => {
-  return str.substring(0, EXCERPT_LENGTH) + (str.length > EXCERPT_LENGTH ? '\u2026' : '');
+  return str && str.substring ? str.substring(0, EXCERPT_LENGTH) + (str.length > EXCERPT_LENGTH ? '\u2026' : '') : str;
 }
 
 export const nullFunc = () => {}

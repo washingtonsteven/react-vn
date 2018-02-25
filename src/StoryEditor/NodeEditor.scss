@@ -8,7 +8,7 @@
     cursor:not-allowed;
   }
 
-  input, textarea {
+  input, textarea, select {
     width:100%;
     border:solid 1px black;
     font-size:1rem;
@@ -21,6 +21,36 @@
   }
 
   .node-link {
+    padding-left:20px;
 
+    & > * { margin-bottom:10px; display:block; }
+
+    select {
+      padding:10px;
+      background-color:#fff;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      border-radius:0;
+    }
+
+    label[for="node-link-node-target"] {
+      position:relative;
+
+       &:after {
+        content:"";
+        display:block;
+        width:1px;
+        height:1px;
+        border:solid 7px #333;
+        border-bottom:0;
+        border-left-color:transparent;
+        border-right-color:transparent;
+        position:absolute;
+        top:64%;
+        right:2%;
+        transform:translate(0, -50%);
+      }
+    }
   }
 }

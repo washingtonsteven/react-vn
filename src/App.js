@@ -24,10 +24,10 @@ class App extends Component {
     });
   }
 
-  nodeUpdated(node) { console.log(`updateNode: ${JSON.stringify(node)}`);
+  nodeUpdated(node) {
     let idx = this.state.storyData.nodes.findIndex(n => n.id === node.id);
 
-    if (!idx || idx < 0) idx = this.state.storyData.nodes.length;
+    if ((!idx && idx !== 0)|| idx < 0) idx = this.state.storyData.nodes.length;
 
     this.setState(prevState => {
       const nodes = [...this.state.storyData.nodes];
