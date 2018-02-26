@@ -18,7 +18,7 @@ class InputNodeLink extends Component {
     });
   }
 
-  inputModalComplete(inputValue) { console.log('imc: '+inputValue);
+  inputModalComplete(inputValue) {
     this.setState({
       ...this.state,
       showInput:false

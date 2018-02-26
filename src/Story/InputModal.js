@@ -9,7 +9,7 @@ class InputModal extends Component {
     this.updateInput = this.updateInput.bind(this);
   }
 
-  onInputComplete() {
+  onInputComplete(e) { e.preventDefault(); // stop form submission
     this.props.onInputComplete && this.props.onInputComplete(this.state.inputValue);
   }
 
@@ -25,9 +25,9 @@ class InputModal extends Component {
       <Modal>
         {() => (
           <div className="modal-content">
-            <form>
+            <form onSubmit={this.onInputComplete}>
               <input type="text" autoFocus onChange={this.updateInput} placeholder={this.props.nodeLink.prompt} />
-              <button onClick={this.onInputComplete}>Submit</button>
+              <button type="button" onClick={this.onInputComplete}>Submit</button>
             </form>
           </div>
         )}
