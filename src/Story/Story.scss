@@ -1,3 +1,5 @@
+@import '~@@/_var';
+
 .story {
   .node {
     width:60%;
@@ -11,17 +13,9 @@
 
     .node-links {
       button.node-link {
-        background-color:#007bff;
+        background-color:$blue;
         color:#fff;
       }
     }
-  }
-
-  .debug {
-    background-color:#fff6b5;
-    color:#f00;
-    padding:25px;
-    margin:35px auto;
-    display:inline-block;
   }
 }

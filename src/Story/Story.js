@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Story.scss';
 
+import Debug from '@@/Debug';
+
 import NodeLink from './NodeLink';
 import InputNodeLink from './InputNodeLink';
 
@@ -110,11 +112,13 @@ class Story extends Component {
             }
           </div>
         </div>
-        <div className="debug">
-          <pre>
-            {JSON.stringify(currentNode, null, 1)}
-          </pre>
-        </div>
+        <Debug>
+          {() => (
+            <pre>
+              {JSON.stringify(currentNode, null, 1)}
+            </pre>
+          )}
+        </Debug>
       </div>
     )
   }

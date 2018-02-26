@@ -11,7 +11,7 @@ const NodeLinkEditor = props => (
     <label htmlFor='node-link-node-target'>
       <span>Target Node</span>
       <select name='node-link-node-target' defaultValue={props.link.node} onChange={(e) => props.onChange(props.linkIndex, {...props.link, node:e.target.value})}>
-        {props.storyData.nodes.map(node => <option value={node.id} key={node.id}>{excerpt(node.content)}</option>)}
+        {props.storyData.nodes.map(node => <option value={node.id} key={node.id}>{node.id} - {excerpt(node.content)}</option>)}
       </select>
     </label>
   </div>

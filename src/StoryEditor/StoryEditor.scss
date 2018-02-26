@@ -1,9 +1,11 @@
+@import '~@@/_var';
+
 .editor {
   .menu {
     margin:20px 0;
     
     #menu-export {
-      background-color:#ffb700;
+      background-color:$yellow;
       color:#333;
       display:inline-block;
     }

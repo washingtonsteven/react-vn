@@ -60,7 +60,7 @@ class StoryEditor extends Component {
           <NodeEditor node={this.state.currentNode} storyData={this.props.storyData} onExit={this.exitNodeEditor} onUpdate={node => { this.props.onNodeUpdated && this.props.onNodeUpdated(node) }} /> :
           <Fragment>
             <NodeList list={this.props.storyData.nodes} onNodeSelected={this.onNodeSelected} />
-            <button onClick={() => this.props.onNodeUpdated && this.props.onNodeUpdated({...blankNode, id:generateId()})}>Add New Node</button>
+            <button onClick={() => this.props.onNodeUpdated && this.props.onNodeUpdated({...blankNode, id:generateId(this.props.storyData.nodes)})}>Add New Node</button>
           </Fragment>
         }
       </div>
