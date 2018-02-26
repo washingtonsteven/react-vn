@@ -7,6 +7,9 @@ import NodeLink from './NodeLink';
 import InputNodeLink from './InputNodeLink';
 
 import { replaceVariables } from '@@/util';
+import MarkdownIt from 'markdown-it';
+
+const md = new MarkdownIt();
 
 const errorNode = {
   content:'there\'s been an error.',
@@ -97,12 +100,12 @@ class Story extends Component {
 
   render() {
     const currentNode = this.state.currentNode || errorNode;
+    const content = md.render(replaceVariables(currentNode.content, this.state.customData));
 
     return (
       <div className="story">
         <div className="node">
-          <div className="node-content">
-            {replaceVariables(currentNode.content, this.state.customData)}
+          <div className="node-content" dangerouslySetInnerHTML={{__html:content}}>
           </div>
           <div className="node-links">
             {
