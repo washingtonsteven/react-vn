@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 
 
 let printTimeout = null;
 
-class TextScroll extends Component {
+class TextScroll extends PureComponent {
   constructor(props) {
     super(props);
 

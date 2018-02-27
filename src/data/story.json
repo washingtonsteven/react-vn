@@ -32,11 +32,34 @@
     },
     {
       "id":"4",
-      "content":"Thank you for telling me that, #{name}. Is your age: #{age}?"
+      "content":"Thank you for telling me that, #{name}. Is your age: #{age}?",
+      "next":[
+        { "node":"7", "content":"pick up the shell", "type":"inventory", "item":"shell", "action":"add" },
+        { "node":"3", "content":"I am set. Time to die."}
+      ]
     },
     {
       "id":"5",
-      "content":"But death is not the end."
+      "content":"But death is not the end.",
+      "next":[
+        { "node":"6", "content":"pick up that staff", "type":"inventory", "item":"staff", "action":"add" }
+      ]
+    },
+    {
+      "id":"6",
+      "content":"The staff invigorates you, bringing you back to life",
+      "next":[
+        {"node":"0", "content":"accept."},
+        {"node":"-1", "content":"reject."} 
+      ]
+    },
+    {
+      "id":"7",
+      "content":"Now what?",
+      "next":[
+        {"node":"4", "content":"Drop it.", "type":"inventory", "item":"shell", "action":"remove"},
+        {"node":"4", "content":"Get another"} 
+      ]
     }
   ]
 }

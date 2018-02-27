@@ -64,15 +64,29 @@ class Story extends Component {
     });
   }
 
-  goToNode(nodeLink) {
+  goToNode(nodeLink) { console.log()
     if (nodeLink.restart) {
-      this.followNodeLink({ node:this.state.rootNode.id });
+      this.setState({
+        ...this.state,
+        customData:{},
+        inventory:{}
+      }, () => this.followNodeLink({ node:this.state.rootNode.id }));
     } else if (nodeLink.type === "input" && nodeLink.targetVariable) {
       this.setState({
         ...this.state,
         customData:{
           ...this.state.customData || {},
           [nodeLink.targetVariable]:nodeLink.inputValue
+        }
+      }, () => this.followNodeLink(nodeLink));
+    } else if (nodeLink.type === "inventory" && nodeLink.item) {
+      const inc = !nodeLink.action || nodeLink.action === 'add' ? 1 : -1; 
+      const newCount = this.state.inventory && this.state.inventory[nodeLink.item] ? this.state.inventory[nodeLink.item] + (inc) : inc;
+      this.setState({
+        ...this.state,
+        inventory:{
+          ...this.state.inventory || {},
+          [nodeLink.item]:newCount
         }
       }, () => this.followNodeLink(nodeLink));
     } else {
