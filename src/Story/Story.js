@@ -3,13 +3,11 @@ import './Story.scss';
 
 import Debug from '@@/Debug';
 
+import NodeContent from './NodeContent';
 import NodeLink from './NodeLink';
 import InputNodeLink from './InputNodeLink';
 
 import { replaceVariables } from '@@/util';
-import MarkdownIt from 'markdown-it';
-
-const md = new MarkdownIt();
 
 const errorNode = {
   content:'there\'s been an error.',
@@ -100,13 +98,12 @@ class Story extends Component {
 
   render() {
     const currentNode = this.state.currentNode || errorNode;
-    const content = md.render(replaceVariables(currentNode.content, this.state.customData));
+    const content = replaceVariables(currentNode.content, this.state.customData);
 
     return (
       <div className="story">
         <div className="node">
-          <div className="node-content" dangerouslySetInnerHTML={{__html:content}}>
-          </div>
+          <NodeContent content={content} />
           <div className="node-links">
             {
               currentNode.next && currentNode.next.length ?

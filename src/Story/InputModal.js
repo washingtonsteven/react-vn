@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Modal from '@@/Modal';
 
+import "./InputModal.scss";
+
 class InputModal extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ class InputModal extends Component {
     return (
       <Modal>
         {() => (
-          <div className="modal-content">
+          <div className="input-modal">
             <form onSubmit={this.onInputComplete}>
               <input type="text" autoFocus onChange={this.updateInput} placeholder={this.props.nodeLink.prompt} />
               <button type="button" onClick={this.onInputComplete}>Submit</button>
