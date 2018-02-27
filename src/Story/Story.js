@@ -64,7 +64,7 @@ class Story extends Component {
     });
   }
 
-  goToNode(nodeLink) { console.log()
+  goToNode(nodeLink) {
     if (nodeLink.restart) {
       this.setState({
         ...this.state,

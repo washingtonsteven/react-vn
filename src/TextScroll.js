@@ -1,6 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
 
-
 let printTimeout = null;
 
 class TextScroll extends PureComponent {
