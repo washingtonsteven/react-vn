@@ -7,7 +7,7 @@ import NodeContent from './NodeContent';
 import NodeLink from './NodeLink';
 import InputNodeLink from './InputNodeLink';
 
-import { replaceVariables } from '@@/util';
+import { replaceVariables, NodeLinkTypes } from '@@/util';
 
 const errorNode = {
   content:'there\'s been an error.',
@@ -71,7 +71,7 @@ class Story extends Component {
         customData:{},
         inventory:{}
       }, () => this.followNodeLink({ node:this.state.rootNode.id }));
-    } else if (nodeLink.type === "input" && nodeLink.targetVariable) {
+    } else if (nodeLink.type === NodeLinkTypes.INPUT && nodeLink.targetVariable) {
       this.setState({
         ...this.state,
         customData:{
@@ -79,7 +79,7 @@ class Story extends Component {
           [nodeLink.targetVariable]:nodeLink.inputValue
         }
       }, () => this.followNodeLink(nodeLink));
-    } else if (nodeLink.type === "inventory" && nodeLink.item) {
+    } else if (nodeLink.type === NodeLinkTypes.INVENTORY && nodeLink.item) {
       const inc = !nodeLink.action || nodeLink.action === 'add' ? 1 : -1; 
       const newCount = this.state.inventory && this.state.inventory[nodeLink.item] ? this.state.inventory[nodeLink.item] + (inc) : inc;
       this.setState({
