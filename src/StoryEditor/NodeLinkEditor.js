@@ -58,7 +58,7 @@ class NodeLinkEditor extends Component {
       <div className='inventory-node-link-options'>
         <label htmlFor='item'>
           <span>Item Name</span>
-          <input type="text" name="target-variable" defaultValue={link.item || ""} onChange={e => onChange(linkIndex, {...link, item:e.target.value})} />
+          <input type="text" name="item" defaultValue={link.item || ""} onChange={e => onChange(linkIndex, {...link, item:e.target.value})} />
         </label>
         <label htmlFor='action'>
           <span>Action</span>
