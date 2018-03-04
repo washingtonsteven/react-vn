@@ -48,7 +48,7 @@ class Story extends Component {
     return (
       <StoryConsumer>
       {
-        ({ state:{storyData}, helpers:{getNode, getRootNode} }) => {
+        ({ helpers:{getNode, getRootNode} }) => {
           const currentNode = (!this.state.currentNodeId ? getRootNode() : getNode(this.state.currentNodeId)) || errorNode;
 
           return (

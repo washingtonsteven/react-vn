@@ -1,4 +1,4 @@
-.node-link {
+.node-link-editor {
   padding-left:20px;
 
   & > * { margin-bottom:10px; display:block; }
@@ -12,8 +12,9 @@
     border-radius:0;
   }
 
-  label[for="node-link-node-target"] {
+  label[for="node-link-node-target"], label[for="action"] {
     position:relative;
+    display:block;
 
      &:after {
       content:"";

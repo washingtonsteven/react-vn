@@ -20,14 +20,40 @@ export class StoryProvider extends React.Component {
     }
   }
   actions = {
-    addBlank:() => {
-      this.setState(state => ({
-        ...state,
-        nodes:[
-          ...state.nodes,
-          { id:generateId(state.nodes), content:"", next:[] }
-        ]
-      }));
+    addBlankNode:() => this.actions.updateNode({ id:generateId(this.state.storyData.nodes), content:"", next:[] }),
+    updateNodeContent:(nodeId, content) => {
+      const node = { ...this.helpers.getNode(nodeId) || {} };
+      node.content = content;
+      this.actions.updateNode(node);
+    },
+    addBlankNodeLink:(nodeId) => {
+      const node = { ...this.helpers.getNode(nodeId) || {} };
+      if (!node.next) node.next = [];
+      node.next.push({ content:"", node:null });
+      this.actions.updateNode(node);
+    },
+    updateNodeLink:(nodeId, linkIndex, link) => {
+      const node = { ...this.helpers.getNode(nodeId) || {} };
+      if (node && node.next) {
+        node.next[linkIndex] = link;
+      }
+      this.actions.updateNode(node);
+    },
+    updateNode:node => {
+      this.keyedNodes[node.id] = node;
+      this.setState(state => {
+        let idx = state.storyData.nodes.findIndex(n => n.id === node.id);
+        if ((!idx && idx !== 0) || idx < 0) idx = state.storyData.nodes.length;
+        const nodes = [...state.storyData.nodes];
+        nodes[idx] = node;
+        return {
+          ...state,
+          storyData:{
+            ...state.storyData,
+            nodes
+          }
+        }
+      });
     }
   }
   helpers = {

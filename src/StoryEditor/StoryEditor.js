@@ -1,69 +1,57 @@
 import React, { Component, Fragment } from 'react';
-import NodeList from './NodeList';
+import { StoryConsumer } from '@@/data/StoryContext';
+
 import NodeEditor from './NodeEditor';
+import NodeList from './NodeList';
 
-import { generateId } from '@@/util';
-
-import "./StoryEditor.scss";
-
-const blankNode = {
-  content:"",
-  next:[]
-}
+import './StoryEditor.scss';
 
 const ExportButton = props => (
-  <a 
-    id="menu-export" 
-    href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(props.data, null, 1))}`}
-    download='story.json'
-    className="button"
-    role="button"
-  >
-    Export
-  </a>
+  <StoryConsumer>
+    {
+      ({state:{storyData:{nodes}}}) => {
+        return (
+          <a 
+            id="menu-export" 
+            href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(nodes, null, 1))}`}
+            download='story.json'
+            className="button"
+            role="button"
+          >
+            {props.children || 'Export'}
+          </a>
+        )
+      }
+    }
+  </StoryConsumer>
 )
 
 class StoryEditor extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-
-    this.onNodeSelected = this.onNodeSelected.bind(this);
-    this.exitNodeEditor = this.exitNodeEditor.bind(this);
-  }
-
-  onNodeSelected(node) {
-    this.setState({
-      ...this.state,
-      editing:true,
-      currentNode:node
-    });
-  }
-
-  exitNodeEditor() {
-    this.setState({
-      ...this.state,
-      editing:false,
-      currentNode:null
-    });
-  }
-
+  state = {}
+  exitNodeEditor = () => this.setState(state => ({ ...state, currentNodeId:null, editing:false }))
+  onNodeSelected = node => this.setState(state => ({ ...state, currentNodeId:node.id, editing:true }))
   render() {
     return(
-      <div className="editor">
-        <div className="menu">
-          <ExportButton data={this.props.storyData} />
-        </div>
+      <StoryConsumer>
         {
-          this.state.editing && this.state.currentNode ?
-          <NodeEditor node={this.state.currentNode} storyData={this.props.storyData} onExit={this.exitNodeEditor} onUpdate={node => { this.props.onNodeUpdated && this.props.onNodeUpdated(node) }} /> :
-          <Fragment>
-            <NodeList list={this.props.storyData.nodes} onNodeSelected={this.onNodeSelected} />
-            <button onClick={() => this.props.onNodeUpdated && this.props.onNodeUpdated({...blankNode, id:generateId(this.props.storyData.nodes)})}>Add New Node</button>
-          </Fragment>
+          ({ state:{storyData:{nodes}}, actions:{updateNode, addBlankNode}, helpers:{getNode} }) => (
+            <div className='editor'>
+              <div className='menu'>
+                <ExportButton />
+              </div>
+              {
+                this.state.editing && this.state.currentNodeId ?
+                  <NodeEditor nodeId={this.state.currentNodeId} onExit={this.exitNodeEditor} />
+                :
+                  <Fragment>
+                    <NodeList list={nodes} onNodeSelected={this.onNodeSelected} />
+                    <button onClick={addBlankNode}>Add New Node</button> 
+                  </Fragment>
+              }
+            </div>
+          )
         }
-      </div>
+      </StoryConsumer>
     )
   }
 }

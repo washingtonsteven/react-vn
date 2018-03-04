@@ -22,7 +22,7 @@ class NodeList extends Component {
   render() {
     return(
       <div className="node-list">
-        {this.props.list.map(n => <NodeListItem node={n} onClick={this.onNodeClick} key={btoa(`${n.id}-${n.content}`)} />)}
+        {this.props.list && this.props.list.map && this.props.list.map(n => <NodeListItem node={n} onClick={this.onNodeClick} key={btoa(`${n.id}-${n.content}`)} />)}
       </div>
     );
   }
