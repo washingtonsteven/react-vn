@@ -21,10 +21,6 @@ const errorNode = {
 
 class Story extends Component {
   state = { currentNodeId:null }
-  gotoNode = nodeLink => this.setState({ 
-    ...this.state, 
-    currentNodeId:nodeLink.node
-  });
 
   gotoNode = nodeLink => this.setState(state => {
     const newState = { ...state, currentNodeId:nodeLink.node };
