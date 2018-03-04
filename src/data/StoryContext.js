@@ -7,8 +7,6 @@ export const StoryContext = createContext();
 export const StoryConsumer = StoryContext.Consumer;
 
 export class StoryProvider extends React.Component {
-  state = { ...storyData }
-  keyedNodes = {}
   constructor(props) {
     super(props);
 
