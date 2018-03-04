@@ -3,22 +3,15 @@ import NodeLink from './NodeLink';
 import InputModal from './InputModal';
 
 class InputNodeLink extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {};
+  state = {}
 
-    this.nodeLinkClicked = this.nodeLinkClicked.bind(this);
-    this.inputModalComplete = this.inputModalComplete.bind(this);
-  }
-
-  nodeLinkClicked() {
+  onClick = () => {
     this.setState({
       showInput:true
     });
   }
 
-  inputModalComplete(inputValue) {
+  inputModalComplete = (inputValue) => {
     this.setState({
       ...this.state,
       showInput:false
@@ -26,12 +19,12 @@ class InputNodeLink extends Component {
   }
 
   followNodeLink(inputValue) {
-    this.props.nodeLinkClicked && this.props.nodeLinkClicked({ ...this.props.nodeLink, inputValue });
+    this.props.onClick && this.props.onClick({ ...this.props.nodeLink, inputValue });
   }
 
   render() {
     return (
-      <NodeLink nodeLinkClicked={this.nodeLinkClicked} nodeLink={this.props.nodeLink}>
+      <NodeLink onClick={this.onClick} nodeLink={this.props.nodeLink}>
         {() => this.state.showInput && <InputModal onInputComplete={this.inputModalComplete} nodeLink={this.props.nodeLink} />}
       </NodeLink>
     )

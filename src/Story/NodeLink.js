@@ -6,14 +6,8 @@ const restartNodeLink = {
 }
 
 class NodeLink extends Component {
-  constructor(props) {
-    super(props);
-
-    this.nodeLinkClicked = this.nodeLinkClicked.bind(this);
-  }
-
-  nodeLinkClicked() {
-    this.props.nodeLinkClicked && this.props.nodeLinkClicked({ ...this.props.nodeLink, restart:this.props.restart });
+  onClick = () => {
+    this.props.onClick && this.props.onClick({ ...this.props.nodeLink, restart:this.props.restart });
   }
 
   render() {
@@ -21,7 +15,7 @@ class NodeLink extends Component {
 
     return (
       <Fragment>
-        <button className="node-link" onClick={this.nodeLinkClicked}>
+        <button className="node-link" onClick={this.onClick}>
           {nodeLink.content || '\u00bb'}
         </button>
         { this.props.children && this.props.children(this.props) }

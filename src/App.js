@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Story from './Story/Story';
 import StoryEditor from './StoryEditor/StoryEditor';
 import storyData from './data/story.json';
+import { StoryProvider } from '@@/data/StoryContext';
 
 import './App.scss';
 
@@ -48,16 +49,18 @@ class App extends Component {
     };
 
     return (
-      <div className="App">
-        <div className="edit-toggle">
-          <button onClick={this.toggleEditing}>{this.state.editing ? 'Play' : 'Edit'}</button>
+      <StoryProvider>
+        <div className="App">
+          <div className="edit-toggle">
+            <button onClick={this.toggleEditing}>{this.state.editing ? 'Play' : 'Edit'}</button>
+          </div>
+          {
+            this.state.editing ?
+            <StoryEditor {...storyProps} onNodeUpdated={this.nodeUpdated} /> :
+            <Story />
+          }
         </div>
-        {
-          this.state.editing ?
-          <StoryEditor {...storyProps} onNodeUpdated={this.nodeUpdated} /> :
-          <Story {...storyProps} />
-        }
-      </div>
+      </StoryProvider>
     );
   }
 }
