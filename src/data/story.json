@@ -1,64 +1,84 @@
 {
-  "nodes":[
+  "nodes": [
     {
-      "root":true,
-      "id":"0",
-      "content":"This is page 0",
-      "next":[
-        { "content":"Go on...", "node":"1" }
+      "root": true,
+      "id": "0",
+      "content": "This is page 0",
+      "next": [{ "content": "Go on...", "node": "1" }]
+    },
+    {
+      "id": "1",
+      "content": "This is page 1",
+      "next": [
+        { "content": "Page 2?", "node": "2" },
+        { "content": "...or Page 3?", "node": "3" }
       ]
     },
     {
-      "id":"1",
-      "content":"This is page 1",
-      "next":[
-       { "content":"Page 2?", "node":"2" },
-       { "content":"...or Page 3?", "node":"3" } 
+      "id": "2",
+      "content": "This is it. Page 2. Good job.",
+      "next": [
+        {
+          "content": "My Name is...",
+          "node": "4",
+          "type": "input",
+          "targetVariable": "name",
+          "prompt": "Enter your name"
+        }
       ]
     },
     {
-      "id":"2",
-      "content":"This is it. Page 2. Good job.",
-      "next":[
-       { "content":"My Name is...", "node":"4", "type":"input", "targetVariable":"name", "prompt":"Enter your name" } 
+      "id": "3",
+      "content": "Page 3. Y O U  D I E D. Game over.",
+      "next": [{ "node": "5" }]
+    },
+    {
+      "id": "4",
+      "content": "Thank you for telling me that, #{name}. Is your age: #{age}?",
+      "next": [
+        {
+          "node": "7",
+          "content": "pick up the shell",
+          "type": "inventory",
+          "item": "shell",
+          "action": "add"
+        },
+        { "node": "3", "content": "I am set. Time to die." }
       ]
     },
     {
-      "id":"3",
-      "content":"Page 3. Y O U  D I E D. Game over.",
-      "next":[
-       { "node":"5" } 
+      "id": "5",
+      "content": "But death is not the end.",
+      "next": [
+        {
+          "node": "6",
+          "content": "pick up that staff",
+          "type": "inventory",
+          "item": "staff",
+          "action": "add"
+        }
       ]
     },
     {
-      "id":"4",
-      "content":"Thank you for telling me that, #{name}. Is your age: #{age}?",
-      "next":[
-        { "node":"7", "content":"pick up the shell", "type":"inventory", "item":"shell", "action":"add" },
-        { "node":"3", "content":"I am set. Time to die."}
+      "id": "6",
+      "content": "The staff invigorates you, bringing you back to life",
+      "next": [
+        { "node": "0", "content": "accept." },
+        { "node": "-1", "content": "reject." }
       ]
     },
     {
-      "id":"5",
-      "content":"But death is not the end.",
-      "next":[
-        { "node":"6", "content":"pick up that staff", "type":"inventory", "item":"staff", "action":"add" }
-      ]
-    },
-    {
-      "id":"6",
-      "content":"The staff invigorates you, bringing you back to life",
-      "next":[
-        {"node":"0", "content":"accept."},
-        {"node":"-1", "content":"reject."} 
-      ]
-    },
-    {
-      "id":"7",
-      "content":"Now what?",
-      "next":[
-        {"node":"4", "content":"Drop it.", "type":"inventory", "item":"shell", "action":"remove"},
-        {"node":"4", "content":"Get another"} 
+      "id": "7",
+      "content": "Now what?",
+      "next": [
+        {
+          "node": "4",
+          "content": "Drop it.",
+          "type": "inventory",
+          "item": "shell",
+          "action": "remove"
+        },
+        { "node": "4", "content": "Get another" }
       ]
     }
   ]

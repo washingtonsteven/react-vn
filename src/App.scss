@@ -1,40 +1,44 @@
-@import '~@@/_var';
+@import "~@@/_var";
 
 .App {
-  padding:60px 30px;
-  max-width:1024px;
-  width:100%;
-  margin:0 auto;
+  padding: 60px 30px;
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
 
   .edit-toggle {
     button {
-      background-color:$red;
-      color:#fff;
+      background-color: $red;
+      color: #fff;
     }
   }
 }
 
-button,.button {
-  text-align:center;
-  border:none;
-  padding:5px 20px;
-  margin-right:15px;
-  font-size:1.25rem;
-  font-weight:normal;
-  cursor:pointer;
-  box-shadow:3px 3px 3px rgba(0,0,0,0.4);
-  transition:box-shadow 0.1s linear;
-  text-decoration:none;
+button,
+.button {
+  text-align: center;
+  border: none;
+  padding: 5px 20px;
+  margin-right: 15px;
+  font-size: 1.25rem;
+  font-weight: normal;
+  cursor: pointer;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.1s linear;
+  text-decoration: none;
 
   &:hover {
-    box-shadow:5px 5px 5px rgba(0,0,0,0.4);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
   }
 }
 
 input {
-  &[type="text"], &[type="tel"], &[type="email"], &[type="password"] {
-    padding:5px 20px;
-    font-size:1.25rem;
-    margin-right:20px;
+  &[type="text"],
+  &[type="tel"],
+  &[type="email"],
+  &[type="password"] {
+    padding: 5px 20px;
+    font-size: 1.25rem;
+    margin-right: 20px;
   }
 }

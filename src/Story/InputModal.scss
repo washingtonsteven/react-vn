@@ -1,14 +1,14 @@
-@import '~@@/_var';
+@import "~@@/_var";
 
 .input-modal {
-  background-color:#000;
-  color:#fff;
+  background-color: #000;
+  color: #fff;
 
   input[type="text"] {
-    border:none;
-    background-color:#000;
-    font-family:$pixel;
-    color:#fff;
-    outline:none;
+    border: none;
+    background-color: #000;
+    font-family: $pixel;
+    color: #fff;
+    outline: none;
   }
 }

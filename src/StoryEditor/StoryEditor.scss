@@ -1,13 +1,13 @@
-@import '~@@/_var';
+@import "~@@/_var";
 
 .editor {
   .menu {
-    margin:20px 0;
-    
+    margin: 20px 0;
+
     #menu-export {
-      background-color:$yellow;
-      color:#333;
-      display:inline-block;
+      background-color: $yellow;
+      color: #333;
+      display: inline-block;
     }
   }
 }

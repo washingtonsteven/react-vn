@@ -1,34 +1,38 @@
 .node-link-editor {
-  padding-left:20px;
+  padding-left: 20px;
 
-  & > * { margin-bottom:10px; display:block; }
-
-  select {
-    padding:10px;
-    background-color:#fff;
-    -webkit-appearance:none;
-    -moz-appearance:none;
-    appearance:none;
-    border-radius:0;
+  & > * {
+    margin-bottom: 10px;
+    display: block;
   }
 
-  label[for="node-link-node-target"], label[for="action"] {
-    position:relative;
-    display:block;
+  select {
+    padding: 10px;
+    background-color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+  }
 
-     &:after {
-      content:"";
-      display:block;
-      width:1px;
-      height:1px;
-      border:solid 7px #333;
-      border-bottom:0;
-      border-left-color:transparent;
-      border-right-color:transparent;
-      position:absolute;
-      top:64%;
-      right:2%;
-      transform:translate(0, -50%);
+  label[for="node-link-node-target"],
+  label[for="action"] {
+    position: relative;
+    display: block;
+
+    &:after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 1px;
+      border: solid 7px #333;
+      border-bottom: 0;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      position: absolute;
+      top: 64%;
+      right: 2%;
+      transform: translate(0, -50%);
     }
   }
 }

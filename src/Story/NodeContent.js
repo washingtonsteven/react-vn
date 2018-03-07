@@ -1,12 +1,12 @@
-import React from 'react';
-import TextScroll from '@@/TextScroll'
+import React from "react";
+import TextScroll from "@@/TextScroll";
 
-import './NodeContent.scss';
+import "./NodeContent.scss";
 
-const NodeContent = (props) => (
-  <div className='node-content' style={{minHeight:"90px"}}>
+const NodeContent = props => (
+  <div className="node-content" style={{ minHeight: "90px" }}>
     <TextScroll>{props.content}</TextScroll>
   </div>
-)
+);
 
 export default NodeContent;

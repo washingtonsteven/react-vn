@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { excerpt } from '@@/util';
+import React, { Component } from "react";
+import { excerpt } from "@@/util";
 
 import "./NodeList.scss";
 
@@ -15,14 +15,22 @@ class NodeList extends Component {
 
     this.onNodeClick = this.onNodeClick.bind(this);
   }
-  onNodeClick(node){
-    this.props.onNodeSelected && this.props.onNodeSelected(node)
+  onNodeClick(node) {
+    this.props.onNodeSelected && this.props.onNodeSelected(node);
   }
 
   render() {
-    return(
+    return (
       <div className="node-list">
-        {this.props.list && this.props.list.map && this.props.list.map(n => <NodeListItem node={n} onClick={this.onNodeClick} key={btoa(`${n.id}-${n.content}`)} />)}
+        {this.props.list &&
+          this.props.list.map &&
+          this.props.list.map(n => (
+            <NodeListItem
+              node={n}
+              onClick={this.onNodeClick}
+              key={btoa(`${n.id}-${n.content}`)}
+            />
+          ))}
       </div>
     );
   }

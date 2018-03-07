@@ -1,33 +1,44 @@
-import React, { Component } from 'react';
-import NodeLink from './NodeLink';
-import InputModal from './InputModal';
+import React, { Component } from "react";
+import NodeLink from "./NodeLink";
+import InputModal from "./InputModal";
 
 class InputNodeLink extends Component {
-  state = {}
+  state = {};
 
   onClick = () => {
     this.setState({
-      showInput:true
+      showInput: true
     });
-  }
+  };
 
-  inputModalComplete = (inputValue) => {
-    this.setState({
-      ...this.state,
-      showInput:false
-    }, () => this.followNodeLink(inputValue));
-  }
+  inputModalComplete = inputValue => {
+    this.setState(
+      {
+        ...this.state,
+        showInput: false
+      },
+      () => this.followNodeLink(inputValue)
+    );
+  };
 
   followNodeLink(inputValue) {
-    this.props.onClick && this.props.onClick({ ...this.props.nodeLink, inputValue });
+    this.props.onClick &&
+      this.props.onClick({ ...this.props.nodeLink, inputValue });
   }
 
   render() {
     return (
       <NodeLink onClick={this.onClick} nodeLink={this.props.nodeLink}>
-        {() => this.state.showInput && <InputModal onInputComplete={this.inputModalComplete} nodeLink={this.props.nodeLink} />}
+        {() =>
+          this.state.showInput && (
+            <InputModal
+              onInputComplete={this.inputModalComplete}
+              nodeLink={this.props.nodeLink}
+            />
+          )
+        }
       </NodeLink>
-    )
+    );
   }
 }
 

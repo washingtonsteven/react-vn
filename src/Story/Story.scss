@@ -1,15 +1,15 @@
-@import '~@@/_var';
+@import "~@@/_var";
 
 .story {
   .node {
-    width:60%;
-    margin:35px auto;
+    width: 60%;
+    margin: 35px auto;
 
     .node-links {
       button.node-link {
-        background-color:$blue;
-        color:#fff;
-        margin-bottom:20px;
+        background-color: $blue;
+        color: #fff;
+        margin-bottom: 20px;
       }
     }
   }

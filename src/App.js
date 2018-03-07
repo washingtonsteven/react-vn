@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Story from './Story/Story';
-import StoryEditor from './StoryEditor/StoryEditor';
-import storyData from './data/story.json';
-import { StoryProvider } from '@@/data/StoryContext';
+import React, { Component } from "react";
+import Story from "./Story/Story";
+import StoryEditor from "./StoryEditor/StoryEditor";
+import storyData from "./data/story.json";
+import { StoryProvider } from "@@/data/StoryContext";
 
-import './App.scss';
+import "./App.scss";
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class App extends Component {
   toggleEditing() {
     this.setState({
       ...this.state,
-      editing:!this.state.editing
+      editing: !this.state.editing
     });
   }
 
@@ -35,30 +35,32 @@ class App extends Component {
       nodes[idx] = node;
       return {
         ...prevState,
-        storyData:{
+        storyData: {
           ...prevState.storyData,
           nodes
         }
-      }
+      };
     });
   }
 
   render() {
-    const storyProps = { 
-      storyData:this.state.storyData 
+    const storyProps = {
+      storyData: this.state.storyData
     };
 
     return (
       <StoryProvider>
         <div className="App">
           <div className="edit-toggle">
-            <button onClick={this.toggleEditing}>{this.state.editing ? 'Play' : 'Edit'}</button>
+            <button onClick={this.toggleEditing}>
+              {this.state.editing ? "Play" : "Edit"}
+            </button>
           </div>
-          {
-            this.state.editing ?
-            <StoryEditor {...storyProps} onNodeUpdated={this.nodeUpdated} /> :
+          {this.state.editing ? (
+            <StoryEditor {...storyProps} onNodeUpdated={this.nodeUpdated} />
+          ) : (
             <Story />
-          }
+          )}
         </div>
       </StoryProvider>
     );
