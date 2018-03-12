@@ -1,5 +1,5 @@
 const variableRegEx = new RegExp(/#{(\S+)}/g);
-export const replaceVariables = (content, customData) => {
+export const replaceVariables = (content = "", customData = {}) => {
   return content.replace(variableRegEx, (match, varName) => {
     return customData[varName] || match;
   });

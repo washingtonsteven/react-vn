@@ -49,6 +49,33 @@ input {
   &[type="password"] {
     padding: 0.5rem;
     font-size: 1rem;
-    margin-right: 20px;
+  }
+}
+
+label {
+  display: flex;
+  grid-template-areas: "label input";
+  margin: 0.5rem 0;
+
+  & > span {
+    grid-area: label;
+    text-align: center;
+    background-color: #ccc;
+    color: #333;
+    z-index: 1;
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    border: solid 1px #aaa;
+    border-right-color: transparent;
+    flex: 1;
+    padding: 0.5rem 1rem;
+    box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
+    min-width: 25%;
+  }
+
+  input,
+  textarea,
+  select {
+    outline: none;
   }
 }

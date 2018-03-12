@@ -18,7 +18,7 @@ class NodeEditor extends Component {
           return (
             <div className="node-editor">
               <label htmlFor="node-id">
-                ID{" "}
+                <span>ID</span>
                 <input
                   type="text"
                   id="node-id"
@@ -28,7 +28,7 @@ class NodeEditor extends Component {
                 />
               </label>
               <label htmlFor="node-content">
-                Content
+                <span>Content</span>
                 <textarea
                   id="node-content"
                   onChange={e => updateNodeContent(nodeId, e.target.value)}

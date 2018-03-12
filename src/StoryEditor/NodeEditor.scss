@@ -2,13 +2,15 @@
   padding: 1.5rem 1rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 
-  & > * {
+  & > *:not(label) {
     display: block;
     margin: 20px 0;
   }
 
   input.node-id {
     cursor: not-allowed;
+    background-color: #ccc;
+    color: #666;
   }
 
   input,
@@ -18,8 +20,9 @@
     border: solid 1px #aaa;
     font-size: 1rem;
     padding: 5px 10px;
-    border-radius: 0.3rem;
-    margin: 0.5rem 0;
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    border-left-color: transparent;
   }
 
   textarea {
