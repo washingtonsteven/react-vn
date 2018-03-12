@@ -45,6 +45,8 @@ class Story extends Component {
 
       if (nodeLink.restart) {
         newState.currentNodeId = null;
+        newState.inventory = {};
+        newState.customData = {};
       }
 
       return newState;
@@ -95,6 +97,16 @@ class Story extends Component {
               </Debug>
               <Debug title="all variables">
                 {() => <pre>{JSON.stringify(getVariables(), null, 1)}</pre>}
+              </Debug>
+              <Debug title="customData">
+                {() => (
+                  <pre>{JSON.stringify(this.state.customData, null, 1)}</pre>
+                )}
+              </Debug>
+              <Debug title="inventory">
+                {() => (
+                  <pre>{JSON.stringify(this.state.inventory, null, 1)}</pre>
+                )}
               </Debug>
             </div>
           );
