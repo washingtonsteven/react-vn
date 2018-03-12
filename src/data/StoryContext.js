@@ -1,6 +1,7 @@
 import React, { createContext } from "react";
 import storyData from "./story.json";
 import { generateId } from "@@/util";
+import { NodeLinkTypes } from "../util";
 
 export const StoryContext = createContext();
 
@@ -67,6 +68,45 @@ export class StoryProvider extends React.Component {
       }
 
       return this.keyedNodes[id];
+    },
+    getNodeLinkVariables: fn => {
+      if (!this.state.storyData.nodes || !fn || typeof fn !== "function")
+        return [];
+
+      return this.state.storyData.nodes.reduce((acc, n, i) => {
+        if (n.next) {
+          const items = n.next.reduce(
+            (iacc, nl, j) => {
+              return fn(nl, iacc);
+            },
+            [...acc]
+          );
+
+          return items;
+        }
+        return acc;
+      }, []);
+    },
+    getItems: () => {
+      return this.helpers.getNodeLinkVariables((nodeLink, itemsList) => {
+        if (nodeLink.type === NodeLinkTypes.INVENTORY) {
+          if (nodeLink.item && !itemsList.includes(nodeLink.item))
+            itemsList.push(nodeLink.item);
+        }
+        return itemsList;
+      });
+    },
+    getVariables: () => {
+      return this.helpers.getNodeLinkVariables((nodeLink, variableList) => {
+        if (nodeLink.type === NodeLinkTypes.INPUT) {
+          if (
+            nodeLink.targetVariable &&
+            !variableList.includes(nodeLink.targetVariable)
+          )
+            variableList.push(nodeLink.targetVariable);
+        }
+        return variableList;
+      });
     }
   };
   render() {

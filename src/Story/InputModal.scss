@@ -1,9 +1,35 @@
 @import "~@@/_var";
 
+@keyframes showModal {
+  from {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
 .input-modal {
-  background-color: #000;
-  color: #fff;
+  // background-color: #000;
+  // color: #fff;
   border-radius: 0.3rem;
+  padding: 2rem;
+  animation: showModal 0.2s ease-out forwards;
+  form {
+    background-color: black;
+    color: white;
+    border-radius: 0.3rem;
+    padding: 2.5rem 3rem 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    &:after {
+      content: "";
+      clear: both;
+    }
+  }
 
   input[type="text"] {
     border: none;
@@ -12,14 +38,18 @@
     color: #fff;
     outline: none;
     border-bottom: solid 1px white;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     padding-left: 0.5rem;
+    display: block;
+    width: 250px;
   }
 
   button {
     border: solid 1px white;
     border-color: white;
     color: white;
+    float: right;
+    margin-right: 0;
 
     &:hover {
       background-color: white;

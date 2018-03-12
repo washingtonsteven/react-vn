@@ -53,7 +53,7 @@ class Story extends Component {
   render() {
     return (
       <StoryConsumer>
-        {({ helpers: { getNode, getRootNode } }) => {
+        {({ helpers: { getNode, getRootNode, getItems, getVariables } }) => {
           const currentNode =
             (!this.state.currentNodeId
               ? getRootNode()
@@ -87,8 +87,14 @@ class Story extends Component {
                   </div>
                 </div>
               )}
-              <Debug>
+              <Debug title="currentNode">
                 {() => <pre>{JSON.stringify(currentNode, null, 1)}</pre>}
+              </Debug>
+              <Debug title="all items">
+                {() => <pre>{JSON.stringify(getItems(), null, 1)}</pre>}
+              </Debug>
+              <Debug title="all variables">
+                {() => <pre>{JSON.stringify(getVariables(), null, 1)}</pre>}
               </Debug>
             </div>
           );

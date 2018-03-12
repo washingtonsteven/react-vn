@@ -4,9 +4,10 @@ const debugStyle = {
   backgroundColor: "rgba(255,183,0,0.4)",
   color: "#ff4542",
   padding: "25px",
-  display: "inline-block",
+  display: "block",
   borderRadius: "0.3rem",
-  boxShadow: "0 3px 6px rgba(0,0,0,0.2)"
+  boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
+  marginBottom: "1rem"
 };
 
 class Debug extends Component {
@@ -24,7 +25,8 @@ class Debug extends Component {
           style={{ fontSize: "0.75rem" }}
           onClick={() => this.toggleShow()}
         >
-          {this.state.show ? "hide" : "show"} debug
+          {this.state.show ? "hide" : "show"} debug{" "}
+          {this.props.title && ` - ${this.props.title}`}
         </button>
         {this.state.show && (
           <div className="debug-content">{this.props.children(this.state)}</div>
