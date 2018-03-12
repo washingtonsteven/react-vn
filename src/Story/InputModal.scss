@@ -3,6 +3,7 @@
 .input-modal {
   background-color: #000;
   color: #fff;
+  border-radius: 0.3rem;
 
   input[type="text"] {
     border: none;
@@ -10,5 +11,19 @@
     font-family: $pixel;
     color: #fff;
     outline: none;
+    border-bottom: solid 1px white;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+  }
+
+  button {
+    border: solid 1px white;
+    border-color: white;
+    color: white;
+
+    &:hover {
+      background-color: white;
+      color: black;
+    }
   }
 }

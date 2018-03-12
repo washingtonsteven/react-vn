@@ -4,7 +4,9 @@ const debugStyle = {
   backgroundColor: "rgba(255,183,0,0.4)",
   color: "#ff4542",
   padding: "25px",
-  display: "inline-block"
+  display: "inline-block",
+  borderRadius: "0.3rem",
+  boxShadow: "0 3px 6px rgba(0,0,0,0.2)"
 };
 
 class Debug extends Component {

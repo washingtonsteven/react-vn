@@ -1,4 +1,7 @@
 .node-editor {
+  padding: 1.5rem 1rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+
   & > * {
     display: block;
     margin: 20px 0;
@@ -12,9 +15,11 @@
   textarea,
   select {
     width: 100%;
-    border: solid 1px black;
+    border: solid 1px #aaa;
     font-size: 1rem;
     padding: 5px 10px;
+    border-radius: 0.3rem;
+    margin: 0.5rem 0;
   }
 
   textarea {

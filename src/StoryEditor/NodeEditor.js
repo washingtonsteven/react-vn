@@ -17,11 +17,24 @@ class NodeEditor extends Component {
           const node = getNode(nodeId);
           return (
             <div className="node-editor">
-              <input type="text" className="node-id" value={nodeId} readOnly />
-              <textarea
-                onChange={e => updateNodeContent(nodeId, e.target.value)}
-                defaultValue={node.content}
-              />
+              <label htmlFor="node-id">
+                ID{" "}
+                <input
+                  type="text"
+                  id="node-id"
+                  className="node-id"
+                  value={nodeId}
+                  readOnly
+                />
+              </label>
+              <label htmlFor="node-content">
+                Content
+                <textarea
+                  id="node-content"
+                  onChange={e => updateNodeContent(nodeId, e.target.value)}
+                  defaultValue={node.content}
+                />
+              </label>
               {node &&
                 node.next &&
                 node.next.map((link, i) => (

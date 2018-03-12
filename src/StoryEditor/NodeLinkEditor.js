@@ -46,16 +46,20 @@ class NodeLinkEditor extends Component {
                   ))}
                 </select>
               </label>
-              <RadioGroup
-                options={Object.values(NodeLinkTypes)}
-                onChange={v =>
-                  updateNodeLink(nodeId, linkIndex, { ...link, type: v })
-                }
-              />
-              {link.type === NodeLinkTypes.INPUT &&
-                this.renderInputOptions(updateNodeLink)}
-              {link.type === NodeLinkTypes.INVENTORY &&
-                this.renderInventoryOptions(updateNodeLink)}
+
+              <div className="node-link-type-options">
+                <RadioGroup
+                  options={Object.values(NodeLinkTypes)}
+                  label="NodeLink type"
+                  onChange={v =>
+                    updateNodeLink(nodeId, linkIndex, { ...link, type: v })
+                  }
+                />
+                {link.type === NodeLinkTypes.INPUT &&
+                  this.renderInputOptions(updateNodeLink)}
+                {link.type === NodeLinkTypes.INVENTORY &&
+                  this.renderInventoryOptions(updateNodeLink)}
+              </div>
             </div>
           );
         }}

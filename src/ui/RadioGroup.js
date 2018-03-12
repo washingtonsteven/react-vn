@@ -32,6 +32,7 @@ class RadioGroup extends Component {
       <div className="radio-group">
         {title || ""}
         <form>
+          <div style={{ marginBottom: "0.5rem" }}>{this.props.label || ""}</div>
           {options.map &&
             options.map((o, i) => (
               <label

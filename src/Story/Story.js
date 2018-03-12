@@ -16,7 +16,8 @@ const nodeLinkTypes = {
 
 const errorNode = {
   content: "there's been an error.",
-  error: true
+  error: true,
+  restart: true
 };
 
 class Story extends Component {
@@ -40,6 +41,10 @@ class Story extends Component {
           state.inventory && state.inventory[item] ? state.inventory[item] : 0;
         itemVal += !action || action === "add" ? 1 : -1;
         newState.inventory = { ...(state.inventory || {}), [item]: itemVal };
+      }
+
+      if (nodeLink.restart) {
+        newState.currentNodeId = null;
       }
 
       return newState;
@@ -76,6 +81,9 @@ class Story extends Component {
                           }
                         )
                       )}
+                    {currentNode.restart && (
+                      <NodeLink restart onClick={this.gotoNode} />
+                    )}
                   </div>
                 </div>
               )}

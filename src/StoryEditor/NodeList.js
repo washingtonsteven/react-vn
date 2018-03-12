@@ -4,8 +4,13 @@ import { excerpt } from "@@/util";
 import "./NodeList.scss";
 
 const NodeListItem = props => (
-  <div className="node" onClick={() => props.onClick(props.node)}>
-    {props.node.id} - {excerpt(props.node.content)}
+  <div
+    className="node"
+    onClick={() => props.onClick && props.onClick(props.node)}
+    style={props.style || {}}
+  >
+    <span>{props.node.id}</span>
+    <span>{excerpt(props.node.content)}</span>
   </div>
 );
 
@@ -22,6 +27,10 @@ class NodeList extends Component {
   render() {
     return (
       <div className="node-list">
+        <NodeListItem
+          node={{ id: "Node ID", content: "Excerpt" }}
+          style={{ cursor: "default", borderColor: "transparent" }}
+        />
         {this.props.list &&
           this.props.list.map &&
           this.props.list.map(n => (

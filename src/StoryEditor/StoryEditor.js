@@ -39,11 +39,7 @@ class StoryEditor extends Component {
   render() {
     return (
       <StoryConsumer>
-        {({
-          state: { storyData: { nodes } },
-          actions: { updateNode, addBlankNode },
-          helpers: { getNode }
-        }) => (
+        {({ state: { storyData: { nodes } }, actions: { addBlankNode } }) => (
           <div className="editor">
             <div className="menu">
               <ExportButton />

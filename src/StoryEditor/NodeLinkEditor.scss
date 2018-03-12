@@ -1,9 +1,19 @@
 .node-link-editor {
-  padding-left: 20px;
+  padding: 1rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 
   & > * {
     margin-bottom: 10px;
     display: block;
+  }
+
+  .node-link-type-options {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+  }
+
+  .radio-group {
+    margin: 1rem 0;
   }
 
   select {

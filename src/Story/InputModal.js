@@ -7,6 +7,7 @@ class InputModal extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {};
     this.onInputComplete = this.onInputComplete.bind(this);
     this.updateInput = this.updateInput.bind(this);
   }
@@ -14,7 +15,7 @@ class InputModal extends Component {
   onInputComplete(e) {
     e.preventDefault(); // stop form submission
     this.props.onInputComplete &&
-      this.props.onInputComplete(this.state.inputValue);
+      this.props.onInputComplete(this.state.inputValue || "");
   }
 
   updateInput(e) {

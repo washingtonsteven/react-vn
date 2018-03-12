@@ -7,9 +7,16 @@
 
     .node-links {
       button.node-link {
-        background-color: $blue;
-        color: #fff;
+        border-color: $blue;
         margin-bottom: 20px;
+        color: $blue;
+        display: block;
+        width: 100%;
+
+        &:hover {
+          background-color: $blue;
+          color: white;
+        }
       }
     }
   }

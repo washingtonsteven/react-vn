@@ -8,6 +8,12 @@
       background-color: $yellow;
       color: #333;
       display: inline-block;
+      border-color: transparent;
+
+      &:hover {
+        background-color: transparent;
+        border-color: $yellow;
+      }
     }
   }
 }
