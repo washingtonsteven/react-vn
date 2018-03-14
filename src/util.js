@@ -13,7 +13,7 @@ export const excerpt = str => {
     : str;
 };
 
-export const nullFunc = () => {};
+export const noOp = () => {};
 
 export const generateId = nodes =>
   String(
