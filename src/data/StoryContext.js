@@ -1,5 +1,4 @@
 import React, { createContext } from "react";
-import storyData from "./story.json";
 import { generateId } from "@@/util";
 import { NodeLinkTypes } from "../util";
 
@@ -10,11 +9,14 @@ export const StoryConsumer = StoryContext.Consumer;
 export class StoryProvider extends React.Component {
   constructor(props) {
     super(props);
+    if (!props.storyData) {
+      throw new Error("StoryProvider missing required prop: storyData");
+    }
 
-    const rootNode = storyData.nodes.find(n => n.root);
+    const rootNode = props.storyData.nodes.find(n => n.root);
     this.keyedNodes = rootNode ? { [rootNode.id]: rootNode } : {};
     this.state = {
-      storyData,
+      storyData: props.storyData,
       rootNode
     };
   }
