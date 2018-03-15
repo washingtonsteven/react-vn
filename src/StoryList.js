@@ -14,11 +14,6 @@ class StoryList extends Component {
       .catch(error => this.setState(state => ({ ...state, error })));
   }
 
-  storyClicked = (e, setStoryPath, history) => {
-    setStoryPath(e.target.dataset.storyPath);
-    history.push("/story");
-  };
-
   render() {
     if (!this.state.loaded || !this.storyList)
       return <div>Loading stories...</div>;
