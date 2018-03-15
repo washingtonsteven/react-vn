@@ -1,0 +1,8 @@
+{
+  "stories": [
+    {
+      "title": "Test Story",
+      "path": "data/story.json"
+    }
+  ]
+}

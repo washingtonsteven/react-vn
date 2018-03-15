@@ -4,10 +4,7 @@ import "./index.scss";
 import App from "./App";
 // import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(
-  <App storyURL="./data/story.json" />,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));
 // registerServiceWorker();
 
 export const modalNode = document.getElementById("modal-root");
