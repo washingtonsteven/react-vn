@@ -11,6 +11,11 @@ const NodeListItem = props => (
   >
     <span>{props.node.id}</span>
     <span>{excerpt(props.node.content)}</span>
+    <span>
+      {typeof props.node.next === "string"
+        ? props.node.next
+        : props.node.next && props.node.next.map(nl => nl.node).join(",")}
+    </span>
   </div>
 );
 
@@ -28,7 +33,7 @@ class NodeList extends Component {
     return (
       <div className="node-list">
         <NodeListItem
-          node={{ id: "Node ID", content: "Excerpt" }}
+          node={{ id: "Node ID", content: "Excerpt", next: "Exits" }}
           style={{ cursor: "default", borderColor: "transparent" }}
         />
         {this.props.list &&

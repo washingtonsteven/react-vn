@@ -7,8 +7,8 @@
 
   .node {
     display: grid;
-    grid-template-columns: 20% 1fr;
-    grid-template-areas: "sidebar main";
+    grid-template-columns: 20% 1fr 20%;
+    grid-template-areas: "sidebar main rightbar";
     padding: 10px 10px;
     cursor: pointer;
     border-left: solid 8px transparent;
@@ -23,6 +23,9 @@
 
     span:first-child {
       grid-area: sidebar;
+    }
+    span:last-child {
+      grid-area: rightbar;
     }
   }
 }

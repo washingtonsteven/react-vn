@@ -45,7 +45,10 @@ export class StoryProvider extends React.Component {
     addBlankNodeLink: nodeId => {
       const node = { ...(this.helpers.getNode(nodeId) || {}) };
       if (!node.next) node.next = [];
-      node.next.push({ content: "", node: null });
+      node.next.push({
+        content: "",
+        node: (this.helpers.getRootNode() || { id: -1 }).id
+      });
       this.actions.updateNode(node);
     },
     updateNodeLink: (nodeId, linkIndex, link) => {
