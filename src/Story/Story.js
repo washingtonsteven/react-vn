@@ -20,6 +20,10 @@ const errorNode = {
   restart: true
 };
 
+const startNode = {
+  content: 'Hit "Edit" to add your first page!'
+};
+
 class Story extends Component {
   state = { currentNodeId: null };
 
@@ -55,11 +59,15 @@ class Story extends Component {
   render() {
     return (
       <StoryConsumer>
-        {({ helpers: { getNode, getRootNode, getItems, getVariables } }) => {
+        {({
+          state: { storyData: { nodes = [] } },
+          helpers: { getNode, getRootNode, getItems, getVariables }
+        }) => {
           const currentNode =
             (!this.state.currentNodeId
               ? getRootNode()
-              : getNode(this.state.currentNodeId)) || errorNode;
+              : getNode(this.state.currentNodeId)) ||
+            (nodes.length ? errorNode : startNode);
 
           return (
             <div className="story">

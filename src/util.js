@@ -16,9 +16,12 @@ export const excerpt = str => {
 export const noOp = () => {};
 
 export const generateId = nodes =>
-  String(
-    Math.max.apply(Math, nodes.map(n => String(+n.id >= 0 ? +n.id : -1))) + 1
-  );
+  nodes.length
+    ? String(
+        Math.max.apply(Math, nodes.map(n => String(+n.id >= 0 ? +n.id : -1))) +
+          1
+      )
+    : 0;
 
 const s = () => Math.floor((1 + Math.random()) * 0x10000).toString(16);
 export const uuid = () => `${s()}-${s()}-${s()}-${s()}`;

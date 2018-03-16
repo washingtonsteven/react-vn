@@ -27,6 +27,10 @@ class TextScroll extends PureComponent {
     }
   }
 
+  componentWillUnmount() {
+    if (printTimeout) clearTimeout(printTimeout);
+  }
+
   componentDidUpdate(prevProps) {
     if (typeof this.props.children !== "string") {
       throw new Error(

@@ -20,6 +20,9 @@ class StoryList extends Component {
 
     return (
       <div>
+        <Link to={`/story/`} className="button">
+          New Game
+        </Link>
         {this.storyList.stories.map(s => (
           <div key={btoa(`${s.path}`)}>
             <Link

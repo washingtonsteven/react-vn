@@ -42,6 +42,11 @@ button,
   }
 }
 
+a.button {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
 input {
   &[type="text"],
   &[type="tel"],

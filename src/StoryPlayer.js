@@ -22,23 +22,17 @@ class StoryPlayer extends Component {
         this.props.match.params.storyURL);
 
     if (!storyPath) {
-      this.setState(state => ({
-        ...state,
-        error: {
-          msg: "No url for fetching a story provided",
-          props: this.props
-        }
-      }));
-      return;
+      this.storyData = { nodes: [] };
+      this.setState(state => ({ ...state, loaded: true }));
+    } else {
+      axios
+        .get(`/${decodeURIComponent(storyPath)}`)
+        .then(({ data, status }) => {
+          if (data && status === 200) this.storyData = data;
+        })
+        .catch(error => this.setState(state => ({ ...state, error })))
+        .then(() => this.setState(state => ({ ...state, loaded: true })));
     }
-
-    axios
-      .get(`/${decodeURIComponent(storyPath)}`)
-      .then(({ data, status }) => {
-        if (data && status === 200) this.storyData = data;
-      })
-      .catch(error => this.setState(state => ({ ...state, error })))
-      .then(() => this.setState(state => ({ ...state, loaded: true })));
   }
 
   render() {

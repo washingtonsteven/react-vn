@@ -23,7 +23,7 @@ class App extends Component {
             </Link>
           </div>
           <Switch>
-            <Route path="/story/:storyURL" component={StoryPlayer} />
+            <Route path="/story/:storyURL?" component={StoryPlayer} />
             <Route exact path="/" component={StoryList} />
             <Route render={() => <Redirect to="/" />} />
           </Switch>

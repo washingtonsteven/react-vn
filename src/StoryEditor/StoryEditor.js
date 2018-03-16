@@ -44,7 +44,8 @@ class StoryEditor extends Component {
             <div className="menu">
               <ExportButton />
             </div>
-            {this.state.editing && this.state.currentNodeId ? (
+            {this.state.editing &&
+            (this.state.currentNodeId || this.state.currentNodeId === 0) ? (
               <NodeEditor
                 nodeId={this.state.currentNodeId}
                 onExit={this.exitNodeEditor}

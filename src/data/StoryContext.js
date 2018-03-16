@@ -32,6 +32,16 @@ export class StoryProvider extends React.Component {
       node.content = content;
       this.actions.updateNode(node);
     },
+    setRootNode: nodeId => {
+      const node = { ...(this.helpers.getNode(nodeId) || {}) };
+      node.root = true;
+      this.actions.updateNode(node);
+    },
+    setRestartNode: (nodeId, value = true) => {
+      const node = { ...(this.helpers.getNode(nodeId) || {}) };
+      node.restart = value;
+      this.actions.updateNode(node);
+    },
     addBlankNodeLink: nodeId => {
       const node = { ...(this.helpers.getNode(nodeId) || {}) };
       if (!node.next) node.next = [];
@@ -63,7 +73,8 @@ export class StoryProvider extends React.Component {
     }
   };
   helpers = {
-    getRootNode: () => this.state.rootNode,
+    getRootNode: () =>
+      this.state.rootNode || this.state.storyData.nodes.find(n => n.root),
     getNode: id => {
       if (!this.keyedNodes[id]) {
         this.keyedNodes[id] = this.state.storyData.nodes.find(n => n.id === id);

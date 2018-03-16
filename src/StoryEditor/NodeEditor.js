@@ -11,7 +11,12 @@ class NodeEditor extends Component {
     return (
       <StoryConsumer>
         {({
-          actions: { updateNodeContent, addBlankNodeLink },
+          actions: {
+            updateNodeContent,
+            addBlankNodeLink,
+            setRootNode,
+            setRestartNode
+          },
           helpers: { getNode }
         }) => {
           const node = getNode(nodeId);
@@ -25,6 +30,24 @@ class NodeEditor extends Component {
                   className="node-id"
                   value={nodeId}
                   readOnly
+                />
+              </label>
+              <label htmlFor="node-root">
+                <span>Root/Start Node</span>
+                <input
+                  type="checkbox"
+                  id="node-root"
+                  onChange={e => setRootNode(nodeId)}
+                  defaultValue={node.root}
+                />
+              </label>
+              <label htmlFor="node-restart">
+                <span>Game End / Restart</span>
+                <input
+                  type="checkbox"
+                  id="node-restart"
+                  onChange={e => setRestartNode(nodeId)}
+                  defaultValue={node.restart}
                 />
               </label>
               <label htmlFor="node-content">
