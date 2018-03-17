@@ -3,6 +3,16 @@
 .editor {
   .menu {
     margin: 20px 0;
+    position: sticky;
+    top: 1rem;
+    z-index: 2;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+
+    a {
+      margin-bottom: 0;
+    }
 
     #menu-export {
       background-color: $yellow;

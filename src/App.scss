@@ -19,6 +19,27 @@
   }
 }
 
+nav {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  padding: 0 20px;
+  margin-bottom: 25px;
+  display: grid;
+  grid-template-areas: "left right";
+  align-items: center;
+
+  .menu {
+    text-align: right;
+  }
+
+  ul {
+    list-style: none;
+
+    a.button {
+      margin-bottom: 0;
+    }
+  }
+}
+
 button,
 .button {
   text-align: center;

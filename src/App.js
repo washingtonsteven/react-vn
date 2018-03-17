@@ -12,16 +12,27 @@ import StoryPlayer from "./StoryPlayer";
 
 import "./App.scss";
 
+const MenuBar = () => (
+  <nav className="menu-bar">
+    <h1>React VN</h1>
+    <div className="menu">
+      <ul>
+        <li>
+          <Link to="/" className="button">
+            Home
+          </Link>
+        </li>
+      </ul>
+    </div>
+  </nav>
+);
+
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router className="App">
         <React.Fragment>
-          <div style={{ display: "inline-block", margin: "25px 0" }}>
-            <Link to="/" className="button">
-              Home
-            </Link>
-          </div>
+          <MenuBar />
           <Switch>
             <Route path="/story/:storyURL?" component={StoryPlayer} />
             <Route exact path="/" component={StoryList} />

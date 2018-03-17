@@ -43,6 +43,11 @@ class StoryEditor extends Component {
           <div className="editor">
             <div className="menu">
               <ExportButton />
+              {!this.state.editing ? (
+                <button onClick={addBlankNode}>Add New Node</button>
+              ) : (
+                <button onClick={this.exitNodeEditor}>Back to List</button>
+              )}
             </div>
             {this.state.editing &&
             (this.state.currentNodeId || this.state.currentNodeId === 0) ? (
@@ -53,7 +58,6 @@ class StoryEditor extends Component {
             ) : (
               <Fragment>
                 <NodeList list={nodes} onNodeSelected={this.onNodeSelected} />
-                <button onClick={addBlankNode}>Add New Node</button>
               </Fragment>
             )}
           </div>

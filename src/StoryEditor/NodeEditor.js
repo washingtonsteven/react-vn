@@ -71,13 +71,6 @@ class NodeEditor extends Component {
               <button onClick={() => addBlankNodeLink(nodeId)}>
                 Add New Link
               </button>
-              <button
-                onClick={() => {
-                  this.props.onExit && this.props.onExit();
-                }}
-              >
-                Back to List
-              </button>
             </div>
           );
         }}
