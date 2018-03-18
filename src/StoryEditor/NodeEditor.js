@@ -1,21 +1,12 @@
 import React, { Component } from "react";
 import { StoryConsumer } from "@@/data/StoryContext";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-
 import NodeLinkEditor from "./NodeLinkEditor";
+import DeleteButton from "./DeleteButton";
 
 import "./NodeEditor.scss";
 
 class NodeEditor extends Component {
-  state = { aboutToBeDeleted: false };
-  deleteSelf = () => {
-    this.setState(state => ({ ...state, aboutToBeDeleted: true }));
-  };
-  undelete = e => {
-    e.stopPropagation();
-    this.setState(state => ({ ...state, aboutToBeDeleted: false }));
-  };
-  confirmDelete = removeNodeFn => {
+  deleteConfirmed = removeNodeFn => {
     this.props.onExit && this.props.onExit();
     removeNodeFn(this.props.nodeId);
   };
@@ -36,26 +27,11 @@ class NodeEditor extends Component {
           const node = getNode(nodeId);
           return (
             <div className="node-editor">
-              <div className="delete-node" onClick={this.deleteSelf}>
-                <FontAwesomeIcon icon="trash" />
-                {!this.state.aboutToBeDeleted && (
-                  <span className="confirm">Delete this Node?</span>
-                )}
-                {this.state.aboutToBeDeleted && (
-                  <span className="confirm">
-                    Are you sure you want to delete this node?{" "}
-                    <span
-                      className="confirmLink"
-                      onClick={() => this.confirmDelete(removeNode)}
-                    >
-                      Yes
-                    </span>{" "}
-                    <span className="confirmLink" onClick={this.undelete}>
-                      No
-                    </span>
-                  </span>
-                )}
-              </div>
+              <DeleteButton
+                className="delete-node"
+                itemName="Node"
+                onDeleteConfirmed={() => this.deleteConfirmed(removeNode)}
+              />
               <label htmlFor="node-id">
                 <span>ID</span>
                 <input

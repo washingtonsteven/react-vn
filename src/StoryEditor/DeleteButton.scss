@@ -1,0 +1,20 @@
+@import "~@@/_var";
+
+.delete-button {
+  cursor: pointer;
+  .confirm {
+    color: #aaa;
+    margin-left: 10px;
+    font-size: 0.8rem;
+    font-style: italic;
+    animation: $fadeInAnimation;
+  }
+  .confirmLink {
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+      color: #666;
+    }
+  }
+}

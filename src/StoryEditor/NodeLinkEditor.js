@@ -2,20 +2,12 @@ import React, { Component } from "react";
 import { StoryConsumer } from "@@/data/StoryContext";
 import { NodeLinkTypes, excerpt } from "@@/util";
 import { RadioGroup } from "@@/ui";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import DeleteButton from "./DeleteButton";
 
 import "./NodeLinkEditor.scss";
 
 class NodeLinkEditor extends Component {
-  state = { aboutToBeDeleted: false };
-  deleteSelf = () => {
-    this.setState(state => ({ ...state, aboutToBeDeleted: true }));
-  };
-  undelete = e => {
-    e.stopPropagation();
-    this.setState(state => ({ ...state, aboutToBeDeleted: false }));
-  };
-  confirmDelete = removeNodeLinkFn => {
+  deleteConfirmed = removeNodeLinkFn => {
     removeNodeLinkFn(this.props.nodeId, this.props.linkIndex);
   };
   render() {
@@ -28,26 +20,11 @@ class NodeLinkEditor extends Component {
           const { nodeId, linkIndex, link } = this.props;
           return (
             <div className="node-link-editor">
-              <div className="delete-node-link" onClick={this.deleteSelf}>
-                <FontAwesomeIcon icon="trash" />
-                {!this.state.aboutToBeDeleted && (
-                  <span className="confirm">Delete this Link?</span>
-                )}
-                {this.state.aboutToBeDeleted && (
-                  <span className="confirm">
-                    Are you sure you want to delete this Link?{" "}
-                    <span
-                      className="confirmLink"
-                      onClick={() => this.confirmDelete(removeNodeLink)}
-                    >
-                      Yes
-                    </span>{" "}
-                    <span className="confirmLink" onClick={this.undelete}>
-                      No
-                    </span>
-                  </span>
-                )}
-              </div>
+              <DeleteButton
+                className="delete-node-link"
+                itemName="Link"
+                onDeleteConfirmed={() => this.deleteConfirmed(removeNodeLink)}
+              />
               <label htmlFor="node-link-content">
                 <span>NodeLink text</span>
                 <input
