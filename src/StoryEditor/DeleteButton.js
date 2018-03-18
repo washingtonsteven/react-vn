@@ -16,11 +16,13 @@ class DeleteButton extends Component {
   render() {
     return (
       <div
-        className={`delete-button${this.props.className &&
-          ` ${this.props.className}`}`}
+        className={`delete-button ${this.state.aboutToBeDeleted &&
+          "danger"}${this.props.className && ` ${this.props.className}`}`}
         onClick={this.deleteSelf}
       >
-        <FontAwesomeIcon icon="trash" />
+        <FontAwesomeIcon
+          icon={this.state.aboutToBeDeleted ? "exclamation" : "trash"}
+        />
         {!this.state.aboutToBeDeleted && (
           <span className="confirm">
             Delete this{this.props.itemName && ` ${this.props.itemName}`}?

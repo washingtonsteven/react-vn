@@ -2,6 +2,11 @@
 
 .delete-button {
   cursor: pointer;
+
+  &.danger svg path {
+    fill: $red;
+  }
+
   .confirm {
     color: #aaa;
     margin-left: 10px;
