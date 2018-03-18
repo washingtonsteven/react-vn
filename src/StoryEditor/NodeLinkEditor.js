@@ -8,12 +8,15 @@ import "./NodeLinkEditor.scss";
 
 class NodeLinkEditor extends Component {
   state = { aboutToBeDeleted: false };
-  deleteSelf = removeNodeLinkFn => {
-    if (this.state.aboutToBeDeleted)
-      removeNodeLinkFn(this.props.nodeId, this.props.linkIndex);
-    else {
-      this.setState(state => ({ ...state, aboutToBeDeleted: true }));
-    }
+  deleteSelf = () => {
+    this.setState(state => ({ ...state, aboutToBeDeleted: true }));
+  };
+  undelete = e => {
+    e.stopPropagation();
+    this.setState(state => ({ ...state, aboutToBeDeleted: false }));
+  };
+  confirmDelete = removeNodeLinkFn => {
+    removeNodeLinkFn(this.props.nodeId, this.props.linkIndex);
   };
   render() {
     return (
@@ -25,13 +28,24 @@ class NodeLinkEditor extends Component {
           const { nodeId, linkIndex, link } = this.props;
           return (
             <div className="node-link-editor">
-              <div
-                className="delete-node-link"
-                onClick={e => this.deleteSelf(removeNodeLink)}
-              >
+              <div className="delete-node-link" onClick={this.deleteSelf}>
                 <FontAwesomeIcon icon="trash" />
+                {!this.state.aboutToBeDeleted && (
+                  <span className="confirm">Delete this Link?</span>
+                )}
                 {this.state.aboutToBeDeleted && (
-                  <span className="confirm">Click again to confirm</span>
+                  <span className="confirm">
+                    Are you sure you want to delete this Link?{" "}
+                    <span
+                      className="confirmLink"
+                      onClick={() => this.confirmDelete(removeNodeLink)}
+                    >
+                      Yes
+                    </span>{" "}
+                    <span className="confirmLink" onClick={this.undelete}>
+                      No
+                    </span>
+                  </span>
                 )}
               </div>
               <label htmlFor="node-link-content">

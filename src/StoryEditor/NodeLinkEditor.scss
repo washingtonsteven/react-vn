@@ -17,6 +17,14 @@
       font-style: italic;
       animation: $fadeInAnimation;
     }
+    .confirmLink {
+      cursor: pointer;
+      text-decoration: underline;
+
+      &:hover {
+        color: #666;
+      }
+    }
   }
 
   .node-link-type-options {

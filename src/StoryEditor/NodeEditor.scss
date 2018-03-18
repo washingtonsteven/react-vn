@@ -1,6 +1,27 @@
+@import "~@@/_var";
+
 .node-editor {
   padding: 1.5rem 1rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+
+  .delete-node {
+    cursor: pointer;
+    .confirm {
+      color: #aaa;
+      margin-left: 10px;
+      font-size: 0.8rem;
+      font-style: italic;
+      animation: $fadeInAnimation;
+    }
+    .confirmLink {
+      cursor: pointer;
+      text-decoration: underline;
+
+      &:hover {
+        color: #666;
+      }
+    }
+  }
 
   & > *:not(label) {
     display: block;

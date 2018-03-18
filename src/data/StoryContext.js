@@ -63,6 +63,21 @@ export class StoryProvider extends React.Component {
       }
       this.actions.updateNode(node);
     },
+    removeNode: nodeId => {
+      this.keyedNodes[nodeId] = null;
+      this.setState(state => {
+        const nodes = [...state.storyData.nodes].filter(n => n.id !== nodeId);
+        const rootNode = nodeId === state.rootNode.id ? null : state.rootNode;
+        return {
+          ...state,
+          storyData: {
+            ...state.storyData,
+            nodes
+          },
+          rootNode
+        };
+      });
+    },
     updateNode: node => {
       this.keyedNodes[node.id] = node;
       this.setState(state => {
