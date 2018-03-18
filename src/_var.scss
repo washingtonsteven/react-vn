@@ -4,3 +4,14 @@ $dim_yellow: rgba(255, 183, 0, 0.4);
 $blue: #007bff;
 
 $pixel: "VT323", monospace;
+
+$fadeInAnimation: fadeIn 0.2s linear;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

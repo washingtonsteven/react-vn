@@ -1,3 +1,4 @@
+@import "~@@/_var";
 .node-link-editor {
   padding: 1rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
@@ -5,6 +6,17 @@
   & > *:not(label) {
     margin-bottom: 10px;
     display: block;
+  }
+
+  .delete-node-link {
+    cursor: pointer;
+    .confirm {
+      margin-left: 10px;
+      color: #aaa;
+      font-size: 0.8rem;
+      font-style: italic;
+      animation: $fadeInAnimation;
+    }
   }
 
   .node-link-type-options {

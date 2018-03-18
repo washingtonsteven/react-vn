@@ -2,17 +2,38 @@ import React, { Component } from "react";
 import { StoryConsumer } from "@@/data/StoryContext";
 import { NodeLinkTypes, excerpt } from "@@/util";
 import { RadioGroup } from "@@/ui";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 
 import "./NodeLinkEditor.scss";
 
 class NodeLinkEditor extends Component {
+  state = { aboutToBeDeleted: false };
+  deleteSelf = removeNodeLinkFn => {
+    if (this.state.aboutToBeDeleted)
+      removeNodeLinkFn(this.props.nodeId, this.props.linkIndex);
+    else {
+      this.setState(state => ({ ...state, aboutToBeDeleted: true }));
+    }
+  };
   render() {
     return (
       <StoryConsumer>
-        {({ state: { storyData: { nodes } }, actions: { updateNodeLink } }) => {
+        {({
+          state: { storyData: { nodes } },
+          actions: { updateNodeLink, removeNodeLink }
+        }) => {
           const { nodeId, linkIndex, link } = this.props;
           return (
             <div className="node-link-editor">
+              <div
+                className="delete-node-link"
+                onClick={e => this.deleteSelf(removeNodeLink)}
+              >
+                <FontAwesomeIcon icon="trash" />
+                {this.state.aboutToBeDeleted && (
+                  <span className="confirm">Click again to confirm</span>
+                )}
+              </div>
               <label htmlFor="node-link-content">
                 <span>NodeLink text</span>
                 <input
@@ -46,7 +67,6 @@ class NodeLinkEditor extends Component {
                   ))}
                 </select>
               </label>
-
               <div className="node-link-type-options">
                 <RadioGroup
                   options={Object.values(NodeLinkTypes)}
