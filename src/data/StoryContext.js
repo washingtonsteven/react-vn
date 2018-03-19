@@ -17,7 +17,10 @@ export class StoryProvider extends React.Component {
     this.keyedNodes = rootNode ? { [rootNode.id]: rootNode } : {};
     this.state = {
       storyData: props.storyData,
-      rootNode
+      rootNode,
+      meta: {
+        debug: props.debug
+      }
     };
   }
   actions = {

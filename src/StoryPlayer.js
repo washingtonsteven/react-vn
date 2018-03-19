@@ -10,7 +10,7 @@ class StoryPlayer extends Component {
   toggleEditing = () => {
     this.setState({
       ...this.state,
-      editing: !this.state.editing
+      editing: this.props.editor ? !this.state.editing : false
     });
   };
 
@@ -41,13 +41,15 @@ class StoryPlayer extends Component {
     if (!this.state.loaded) return <div>Loading...</div>;
 
     return (
-      <StoryProvider storyData={this.storyData}>
+      <StoryProvider storyData={this.storyData} debug={this.props.debug}>
         <div className="App">
-          <div className="edit-toggle">
-            <button onClick={this.toggleEditing}>
-              {this.state.editing ? "Play" : "Edit"}
-            </button>
-          </div>
+          {this.props.editor && (
+            <div className="edit-toggle">
+              <button onClick={this.toggleEditing}>
+                {this.state.editing ? "Play" : "Edit"}
+              </button>
+            </div>
+          )}
           {this.state.editing ? (
             <StoryEditor onNodeUpdated={this.nodeUpdated} />
           ) : (
@@ -60,3 +62,5 @@ class StoryPlayer extends Component {
 }
 
 export default withRouter(StoryPlayer);
+
+export const StoryPlayerNoRouting = StoryPlayer;
