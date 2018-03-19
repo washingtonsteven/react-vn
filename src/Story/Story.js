@@ -60,7 +60,7 @@ class Story extends Component {
     return (
       <StoryConsumer>
         {({
-          state: { storyData: { nodes = [] } },
+          state: { storyData: { nodes = [] }, meta: { debug } },
           helpers: { getNode, getRootNode, getItems, getVariables }
         }) => {
           const currentNode =
@@ -97,25 +97,31 @@ class Story extends Component {
                   </div>
                 </div>
               )}
-              <Debug title="currentNode">
-                {() => <pre>{JSON.stringify(currentNode, null, 1)}</pre>}
-              </Debug>
-              <Debug title="all items">
-                {() => <pre>{JSON.stringify(getItems(), null, 1)}</pre>}
-              </Debug>
-              <Debug title="all variables">
-                {() => <pre>{JSON.stringify(getVariables(), null, 1)}</pre>}
-              </Debug>
-              <Debug title="customData">
-                {() => (
-                  <pre>{JSON.stringify(this.state.customData, null, 1)}</pre>
-                )}
-              </Debug>
-              <Debug title="inventory">
-                {() => (
-                  <pre>{JSON.stringify(this.state.inventory, null, 1)}</pre>
-                )}
-              </Debug>
+              {debug && (
+                <React.Fragment>
+                  <Debug title="currentNode">
+                    {() => <pre>{JSON.stringify(currentNode, null, 1)}</pre>}
+                  </Debug>
+                  <Debug title="all items">
+                    {() => <pre>{JSON.stringify(getItems(), null, 1)}</pre>}
+                  </Debug>
+                  <Debug title="all variables">
+                    {() => <pre>{JSON.stringify(getVariables(), null, 1)}</pre>}
+                  </Debug>
+                  <Debug title="customData">
+                    {() => (
+                      <pre>
+                        {JSON.stringify(this.state.customData, null, 1)}
+                      </pre>
+                    )}
+                  </Debug>
+                  <Debug title="inventory">
+                    {() => (
+                      <pre>{JSON.stringify(this.state.inventory, null, 1)}</pre>
+                    )}
+                  </Debug>
+                </React.Fragment>
+              )}
             </div>
           );
         }}

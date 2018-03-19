@@ -34,7 +34,10 @@ class App extends Component {
         <React.Fragment>
           <MenuBar />
           <Switch>
-            <Route path="/story/:storyURL?" component={StoryPlayer} />
+            <Route
+              path="/story/:storyURL?"
+              render={() => <StoryPlayer debug editor />}
+            />
             <Route exact path="/" component={StoryList} />
             <Route render={() => <Redirect to="/" />} />
           </Switch>
