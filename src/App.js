@@ -4,8 +4,7 @@ import {
   Route,
   Switch,
   Redirect,
-  Link,
-  withRouter
+  Link
 } from "react-router-dom";
 
 import StoryList from "./StoryList";
