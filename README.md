@@ -76,4 +76,5 @@ Click "Export" to get a .json file with your story in it.
 ### Upcoming Features
 
 * Finishing this README.
+* Hosting on Netlify
 * More here: https://trello.com/b/CZ9sbVSJ
