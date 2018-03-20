@@ -4,7 +4,8 @@ import {
   Route,
   Switch,
   Redirect,
-  Link
+  Link,
+  withRouter
 } from "react-router-dom";
 
 import StoryList from "./StoryList";
@@ -28,17 +29,41 @@ const MenuBar = () => (
 );
 
 class App extends Component {
+  state = { loadedStoryData: null };
+  fileUploaded = fileText => {
+    try {
+      const json = JSON.parse(fileText);
+      this.setState(
+        state => ({ ...state, loadedStoryData: json }),
+        () => {
+          this.router.history && this.router.history.push("/story/");
+        }
+      );
+    } catch (e) {
+      console.log("Tried to load a file, but it wasn't JSON");
+    }
+  };
   render() {
     return (
-      <Router className="App">
+      <Router className="App" ref={r => (this.router = r)}>
         <React.Fragment>
           <MenuBar />
           <Switch>
             <Route
               path="/story/:storyURL?"
-              render={() => <StoryPlayer debug editor />}
+              render={() => (
+                <StoryPlayer
+                  debug
+                  editor
+                  loadedStoryData={this.state.loadedStoryData}
+                />
+              )}
             />
-            <Route exact path="/" component={StoryList} />
+            <Route
+              exact
+              path="/"
+              render={() => <StoryList onFileLoaded={this.fileUploaded} />}
+            />
             <Route render={() => <Redirect to="/" />} />
           </Switch>
         </React.Fragment>

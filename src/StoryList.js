@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import JSONFileInput from "./ui/FileInput";
 
 class StoryList extends Component {
   state = {};
@@ -14,6 +15,10 @@ class StoryList extends Component {
       .catch(error => this.setState(state => ({ ...state, error })));
   }
 
+  fileSelected = file => {
+    this.props.onFileLoaded && this.props.onFileLoaded(file);
+  };
+
   render() {
     if (!this.state.loaded || !this.storyList)
       return <div>Loading stories...</div>;
@@ -23,6 +28,9 @@ class StoryList extends Component {
         <Link to={`/story/`} className="button">
           New Game
         </Link>
+        <div className="button">
+          <JSONFileInput onFileSelected={this.fileSelected} />
+        </div>
         {this.storyList.stories.map(s => (
           <div key={btoa(`${s.path}`)}>
             <Link

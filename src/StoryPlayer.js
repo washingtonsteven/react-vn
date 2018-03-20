@@ -15,6 +15,12 @@ class StoryPlayer extends Component {
   };
 
   componentDidMount() {
+    if (this.props.loadedStoryData) {
+      this.storyData = this.props.loadedStoryData;
+      this.setState(state => ({ ...state, loaded: true }));
+      return;
+    }
+
     const storyPath =
       this.props.storyURL ||
       (this.props.match &&
