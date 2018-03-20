@@ -8,12 +8,12 @@ import "./StoryEditor.scss";
 
 const ExportButton = props => (
   <StoryConsumer>
-    {({ state: { storyData: { nodes } } }) => {
+    {({ state: { storyData } }) => {
       return (
         <a
           id="menu-export"
           href={`data:text/json;charset=utf-8,${encodeURIComponent(
-            JSON.stringify(nodes, null, 1)
+            JSON.stringify(storyData, null, 1)
           )}`}
           download="story.json"
           className="button"

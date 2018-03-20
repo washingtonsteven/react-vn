@@ -33,14 +33,18 @@ class App extends Component {
   fileUploaded = fileText => {
     try {
       const json = JSON.parse(fileText);
-      this.setState(
-        state => ({ ...state, loadedStoryData: json }),
-        () => {
-          this.router.history && this.router.history.push("/story/");
-        }
-      );
+      if (json.nodes) {
+        this.setState(
+          state => ({ ...state, loadedStoryData: json }),
+          () => {
+            this.router.history && this.router.history.push("/story/");
+          }
+        );
+      } else {
+        throw new Error(`uploaded JSON must have a 'nodes' property.`);
+      }
     } catch (e) {
-      console.log("Tried to load a file, but it wasn't JSON");
+      console.error(e);
     }
   };
   render() {

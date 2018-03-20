@@ -5,6 +5,7 @@ class JSONFileInput extends Component {
   fileReader = new FileReader();
   uploadFile = e => {
     const file = e.target.files[0];
+    //TODO: Check that type is correct, and parse?
     this.fileReader.onload = this.onFileLoad;
     this.fileReader.readAsText(file);
   };
