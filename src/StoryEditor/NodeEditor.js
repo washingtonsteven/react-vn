@@ -48,7 +48,7 @@ class NodeEditor extends Component {
                   type="checkbox"
                   id="node-root"
                   onChange={e => setRootNode(nodeId)}
-                  defaultValue={node.root}
+                  defaultChecked={node.root}
                 />
               </label>
               <label htmlFor="node-restart">
@@ -57,7 +57,7 @@ class NodeEditor extends Component {
                   type="checkbox"
                   id="node-restart"
                   onChange={e => setRestartNode(nodeId)}
-                  defaultValue={node.restart}
+                  defaultChecked={node.restart}
                 />
               </label>
               <label htmlFor="node-content">

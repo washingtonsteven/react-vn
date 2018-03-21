@@ -28,7 +28,8 @@ export class StoryProvider extends React.Component {
       this.actions.updateNode({
         id: generateId(this.state.storyData.nodes),
         content: "",
-        next: []
+        next: [],
+        root: !this.state.storyData.nodes || !this.state.storyData.nodes.length
       }),
     updateNodeContent: (nodeId, content) => {
       const node = { ...(this.helpers.getNode(nodeId) || {}) };
@@ -88,7 +89,9 @@ export class StoryProvider extends React.Component {
         if ((!idx && idx !== 0) || idx < 0) idx = state.storyData.nodes.length;
         const nodes = [...state.storyData.nodes];
         nodes[idx] = node;
-        const rootNode = node.id === state.rootNode.id ? node : state.rootNode;
+        const rootNode = state.rootNode
+          ? node.id === state.rootNode.id ? node : state.rootNode
+          : node.root ? node : state.rootNode;
         return {
           ...state,
           storyData: {
