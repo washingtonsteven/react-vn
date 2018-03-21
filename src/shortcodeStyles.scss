@@ -1,0 +1,94 @@
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+.danger {
+  color: red;
+}
+
+.shaky {
+  & > * {
+    display: inline-block;
+    animation: shake 0.02s infinite alternate backwards;
+  }
+}
+
+.reallyshaky {
+  & > * {
+    display: inline-block;
+    animation: reallyshake 0.02s infinite alternate backwards;
+  }
+}
+
+.dance {
+  & > * {
+    display: inline-block;
+    animation: dance 0.7s infinite backwards $easeOutBack;
+    @for $i from 1 through 7 {
+      &:nth-child(7n + #{$i}) {
+        animation-delay: $i * 0.1s;
+      }
+    }
+  }
+}
+
+.rainbow {
+  & > * {
+    display: inline-block;
+    &:nth-child(7n + 1) {
+      color: red;
+    }
+    &:nth-child(7n + 2) {
+      color: orange;
+    }
+    &:nth-child(7n + 3) {
+      color: yellow;
+    }
+    &:nth-child(7n + 4) {
+      color: green;
+    }
+    &:nth-child(7n + 5) {
+      color: blue;
+    }
+    &:nth-child(7n + 6) {
+      color: indigo;
+    }
+    &:nth-child(7n) {
+      color: violet;
+    }
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(-2px, -2px);
+  }
+  100% {
+    transform: translat(2px, 2px);
+  }
+}
+
+@keyframes reallyshake {
+  0% {
+    transform: translate(-2px, -2px);
+  }
+  33% {
+    transform: translate(2px, -2px);
+  }
+  66% {
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    transform: translat(2px, 2px);
+  }
+}
+
+@keyframes dance {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, -2px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

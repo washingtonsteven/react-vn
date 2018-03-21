@@ -1,67 +1,31 @@
-import React, { PureComponent, Fragment } from "react";
-
-let printTimeout = null;
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import "./TextScroll.scss";
 
 class TextScroll extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      content: ""
-    };
-  }
-
-  componentDidMount() {
-    if (typeof this.props.children !== "string") {
-      throw new Error(
-        `Only text children are allowed for TextScroll. Received ${
-          this.props.children.map
-            ? this.props.children.map(c => c.type).join(",")
-            : this.props.children.type
-        }`
-      );
-    }
-
-    if (this.props.children) {
-      this.printContent(this.props.children, true);
-    }
-  }
-
-  componentWillUnmount() {
-    if (printTimeout) clearTimeout(printTimeout);
-  }
-
+  state = { animating: true };
   componentDidUpdate(prevProps) {
-    if (typeof this.props.children !== "string") {
-      throw new Error(
-        `Only text children are allowed for TextScroll. Received ${typeof this
-          .props.children}`
+    if (prevProps.children !== this.props.children) {
+      this.setState({ animating: false }, () =>
+        setTimeout(() => this.setState({ animating: true }), 1)
       );
     }
-
-    if (prevProps.children !== this.props.children) {
-      this.printContent(this.props.children, true);
-    }
   }
-
-  printContent(content, doReset) {
-    if (printTimeout) clearTimeout(printTimeout);
-
-    const nextVal = doReset
-      ? ""
-      : content.substring(0, this.state.content.length + 1);
-    this.setState({ ...this.state, content: nextVal }, () => {
-      if (this.state.content.length < content.length) {
-        printTimeout = setTimeout(() => {
-          this.printContent(content);
-        }, 10);
-      }
-    });
-  }
-
   render() {
-    return <Fragment>{this.state.content}</Fragment>;
+    return (
+      <span
+        className={`text-scroll ${
+          this.state.animating ? "run-animation" : "hide"
+        }`}
+        style={{ width: `${this.props.children.length}em` }}
+        dangerouslySetInnerHTML={{ __html: this.props.children }}
+      />
+    );
   }
 }
+
+TextScroll.propTypes = {
+  children: PropTypes.string
+};
 
 export default TextScroll;

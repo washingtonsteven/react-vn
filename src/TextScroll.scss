@@ -1,0 +1,24 @@
+.text-scroll {
+  & {
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    opacity: 1;
+  }
+
+  &.run-animation {
+    animation: type 1s steps(60, end);
+  }
+
+  &.hide {
+    opacity: 0;
+  }
+}
+
+@keyframes type {
+  from {
+    width: 0;
+  }
+}
+
+@import "~@@/shortcodeStyles.scss";

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import JSONFileInput from "./ui/JSONFileInput";
 
 class StoryList extends Component {
-  state = { jsonURL: "" };
+  state = { jsonURL: "data/story.json" };
 
   fileSelected = file => {
     this.props.onFileLoaded && this.props.onFileLoaded(file);

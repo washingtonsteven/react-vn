@@ -5,6 +5,23 @@ export const replaceVariables = (content = "", customData = {}) => {
   });
 };
 
+const shortcodeRegEx = new RegExp(/\[(.*?)?\](?:(.+?)?\[\/(.*?)\])?/);
+export const processShortcodes = (content = "") => {
+  const processed = content.replace(
+    shortcodeRegEx,
+    (match, open, children, close) => {
+      if (open === close) {
+        return `<span class="${open}">${children
+          .split("")
+          .map(l => `<span>${l}</span>`)
+          .join("")}</span>`;
+      }
+    }
+  );
+
+  return processed;
+};
+
 export const EXCERPT_LENGTH = 40;
 export const excerpt = str => {
   return str && str.substring
