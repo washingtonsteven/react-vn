@@ -14,8 +14,12 @@ class TextScroll extends PureComponent {
   render() {
     return (
       <div>
-        <Typing key={this.props.children} speed={this.state.speed}>
-          <span>{processShortcodes(this.props.children)}</span>
+        <Typing
+          key={this.props.children}
+          speed={this.state.speed}
+          cursor={null}
+        >
+          {processShortcodes(this.props.children)}
         </Typing>
       </div>
     );

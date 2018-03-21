@@ -7,10 +7,11 @@ export const replaceVariables = (content = "", customData = {}) => {
   });
 };
 
-const shortcodeRegEx = new RegExp(/\[(.*?)?\](?:(.+?)?\[\/(.*?)\])?/g);
+const shortcodeRegEx = new RegExp(/#\[(.*?)?\](?:(.+?)?\[\/(.*?)\])?/g);
 export const processShortcodes = (content = "") => {
   let currentTag = "";
   const processed = content.split(shortcodeRegEx).reduce((acc, v, i) => {
+    if (!v) return acc;
     if (i % 4 === 0 && v) acc.push(<span key={i}>{v}</span>);
     else if (i % 4 === 2 && currentTag) {
       acc.push(

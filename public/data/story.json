@@ -3,7 +3,7 @@
     {
       "root": true,
       "id": "0",
-      "content": "This is page 0 [dance]123456712345671234567[/dance]",
+      "content": "This is page 0 #[danger shaky]123456712345671234567[/dance]",
       "next": [{ "content": "Go on...", "node": "1" }]
     },
     {
