@@ -6,6 +6,7 @@ import {
   Redirect,
   Link
 } from "react-router-dom";
+import axios from "axios";
 
 import StoryList from "./StoryList";
 import StoryPlayer from "./StoryPlayer";
@@ -28,23 +29,27 @@ const MenuBar = () => (
 );
 
 class App extends Component {
-  state = { loadedStoryData: null };
-  fileUploaded = fileText => {
-    try {
-      const json = JSON.parse(fileText);
-      if (json.nodes) {
-        this.setState(
-          state => ({ ...state, loadedStoryData: json }),
-          () => {
-            this.router.history && this.router.history.push("/story/");
-          }
-        );
-      } else {
-        throw new Error(`uploaded JSON must have a 'nodes' property.`);
-      }
-    } catch (e) {
-      console.error(e);
+  state = { storyData: null };
+  loadFile = url => {
+    axios.get(url).then(({ data, status }) => {
+      if (data && status === 200) this.fileUploaded(data);
+    });
+  };
+  fileUploaded = json => {
+    if (json.nodes) {
+      this.setState(
+        state => ({ ...state, storyData: json }),
+        () => this.router.history && this.router.history.push("/story")
+      );
+    } else {
+      throw new Error(`Supplied JSON must have a 'nodes' property.`);
     }
+  };
+  startNewStory = () => {
+    this.setState(
+      state => ({ ...state, storyData: { nodes: [] } }),
+      () => this.router.history && this.router.history.push("/story")
+    );
   };
   render() {
     return (
@@ -53,19 +58,25 @@ class App extends Component {
           <MenuBar />
           <Switch>
             <Route
-              path="/story/:storyURL?"
-              render={() => (
-                <StoryPlayer
-                  debug
-                  editor
-                  loadedStoryData={this.state.loadedStoryData}
-                />
-              )}
+              path="/story/"
+              render={() =>
+                this.state.storyData ? (
+                  <StoryPlayer debug editor storyData={this.state.storyData} />
+                ) : (
+                  <Redirect to="/" />
+                )
+              }
             />
             <Route
               exact
               path="/"
-              render={() => <StoryList onFileLoaded={this.fileUploaded} />}
+              render={() => (
+                <StoryList
+                  onFileLoaded={this.fileUploaded}
+                  onFilePathSet={this.loadFile}
+                  onNew={this.startNewStory}
+                />
+              )}
             />
             <Route render={() => <Redirect to="/" />} />
           </Switch>

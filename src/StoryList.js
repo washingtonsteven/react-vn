@@ -1,46 +1,42 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import JSONFileInput from "./ui/FileInput";
+import JSONFileInput from "./ui/JSONFileInput";
 
 class StoryList extends Component {
-  state = {};
-  componentDidMount() {
-    axios
-      .get("/data/stories.json")
-      .then(({ data, status }) => {
-        this.storyList = data;
-        this.setState(state => ({ ...state, loaded: true }));
-      })
-      .catch(error => this.setState(state => ({ ...state, error })));
-  }
+  state = { jsonURL: "" };
 
   fileSelected = file => {
     this.props.onFileLoaded && this.props.onFileLoaded(file);
   };
 
-  render() {
-    if (!this.state.loaded || !this.storyList)
-      return <div>Loading stories...</div>;
+  loadFile = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.onFilePathSet && this.props.onFilePathSet(this.state.jsonURL);
+  };
 
+  setFilePath = e => {
+    const jsonURL = e.target.value;
+    this.setState(state => ({ ...state, jsonURL }));
+  };
+
+  render() {
     return (
       <div>
-        <Link to={`/story/`} className="button">
-          New Game
-        </Link>
-        <div className="button">
+        <button onClick={this.props.onNew}>New Story</button>
+        <div>
           <JSONFileInput onFileSelected={this.fileSelected} />
         </div>
-        {this.storyList.stories.map(s => (
-          <div key={btoa(`${s.path}`)}>
-            <Link
-              to={`/story/${encodeURIComponent(s.path)}`}
-              className="button"
-            >
-              {s.title} - {s.path}
-            </Link>
-          </div>
-        ))}
+        <div>
+          <form onSubmit={this.loadFile}>
+            <input
+              type="text"
+              placeholder="JSON url or serverpath"
+              value={this.state.jsonURL}
+              onChange={this.setFilePath}
+            />
+            <button>Load!</button>
+          </form>
+        </div>
       </div>
     );
   }

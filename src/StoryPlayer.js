@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
 import Story from "./Story/Story";
 import StoryEditor from "./StoryEditor/StoryEditor";
 import { StoryProvider } from "@@/data/StoryContext";
-import { withRouter } from "react-router-dom";
 
 class StoryPlayer extends Component {
   state = { editing: false };
@@ -15,35 +13,17 @@ class StoryPlayer extends Component {
   };
 
   componentDidMount() {
-    if (this.props.loadedStoryData) {
-      this.storyData = this.props.loadedStoryData;
-      this.setState(state => ({ ...state, loaded: true }));
-      return;
-    }
-
-    const storyPath =
-      this.props.storyURL ||
-      (this.props.match &&
-        this.props.match.params &&
-        this.props.match.params.storyURL);
-
-    if (!storyPath) {
-      this.storyData = { nodes: [] };
+    if (this.props.storyData) {
+      this.storyData = this.props.storyData;
       this.setState(state => ({ ...state, loaded: true }));
     } else {
-      axios
-        .get(`/${decodeURIComponent(storyPath)}`)
-        .then(({ data, status }) => {
-          if (data && status === 200) this.storyData = data;
-        })
-        .catch(error => this.setState(state => ({ ...state, error })))
-        .then(() => this.setState(state => ({ ...state, loaded: true })));
+      throw new Error(
+        "Required prop 'storyData' not given to StoryPlayer Component"
+      );
     }
   }
 
   render() {
-    if (this.state.error)
-      return <pre>{JSON.stringify(this.state.error, null, 1)}</pre>;
     if (!this.state.loaded) return <div>Loading...</div>;
 
     return (
@@ -56,7 +36,7 @@ class StoryPlayer extends Component {
               </button>
             </div>
           )}
-          {this.state.editing ? (
+          {this.state.editing && this.props.editor ? (
             <StoryEditor onNodeUpdated={this.nodeUpdated} />
           ) : (
             <Story />
@@ -67,6 +47,4 @@ class StoryPlayer extends Component {
   }
 }
 
-export default withRouter(StoryPlayer);
-
-export const StoryPlayerNoRouting = StoryPlayer;
+export default StoryPlayer;
