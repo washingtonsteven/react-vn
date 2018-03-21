@@ -1,3 +1,5 @@
+import React from "react";
+
 const variableRegEx = new RegExp(/#{(\S+)}/g);
 export const replaceVariables = (content = "", customData = {}) => {
   return content.replace(variableRegEx, (match, varName) => {
@@ -5,19 +7,23 @@ export const replaceVariables = (content = "", customData = {}) => {
   });
 };
 
-const shortcodeRegEx = new RegExp(/\[(.*?)?\](?:(.+?)?\[\/(.*?)\])?/);
+const shortcodeRegEx = new RegExp(/\[(.*?)?\](?:(.+?)?\[\/(.*?)\])?/g);
 export const processShortcodes = (content = "") => {
-  const processed = content.replace(
-    shortcodeRegEx,
-    (match, open, children, close) => {
-      if (open === close) {
-        return `<span class="${open}">${children
-          .split("")
-          .map(l => `<span>${l}</span>`)
-          .join("")}</span>`;
-      }
+  let currentTag = "";
+  const processed = content.split(shortcodeRegEx).reduce((acc, v, i) => {
+    if (i % 4 === 0 && v) acc.push(<span key={i}>{v}</span>);
+    else if (i % 4 === 2 && currentTag) {
+      acc.push(
+        <span className={currentTag} key={i}>
+          {v.split("").map((l, j) => <span key={`${i}.${j}`}>{l}</span>)}
+        </span>
+      );
+      currentTag = "";
+    } else if (i % 4 === 1) {
+      currentTag = v;
     }
-  );
+    return acc;
+  }, []);
 
   return processed;
 };

@@ -1,31 +1,25 @@
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
+import Typing from "react-typing-animation";
 import "./TextScroll.scss";
+import { processShortcodes } from "@@/util";
+
+const speeds = {
+  INSTANT: 0,
+  FAST: 10,
+  SLOW: 50
+};
 
 class TextScroll extends PureComponent {
-  state = { animating: true };
-  componentDidUpdate(prevProps) {
-    if (prevProps.children !== this.props.children) {
-      this.setState({ animating: false }, () =>
-        setTimeout(() => this.setState({ animating: true }), 1)
-      );
-    }
-  }
+  state = { speed: speeds.FAST };
   render() {
     return (
-      <span
-        className={`text-scroll ${
-          this.state.animating ? "run-animation" : "hide"
-        }`}
-        style={{ width: `${this.props.children.length}em` }}
-        dangerouslySetInnerHTML={{ __html: this.props.children }}
-      />
+      <div>
+        <Typing key={this.props.children} speed={this.state.speed}>
+          <span>{processShortcodes(this.props.children)}</span>
+        </Typing>
+      </div>
     );
   }
 }
-
-TextScroll.propTypes = {
-  children: PropTypes.string
-};
 
 export default TextScroll;
