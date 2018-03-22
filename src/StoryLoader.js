@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import JSONFileInput from "./ui/JSONFileInput";
 
-class StoryList extends Component {
+class StoryLoader extends Component {
   state = { jsonURL: "data/story.json" };
 
   fileSelected = file => {
@@ -22,7 +22,9 @@ class StoryList extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.onNew}>New Story</button>
+        {!process.env.REACT_APP_IS_PLAYER && (
+          <button onClick={this.props.onNew}>New Story</button>
+        )}
         <div>
           <JSONFileInput onFileSelected={this.fileSelected} />
         </div>
@@ -42,4 +44,4 @@ class StoryList extends Component {
   }
 }
 
-export default StoryList;
+export default StoryLoader;

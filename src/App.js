@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 
-import StoryList from "./StoryList";
+import StoryLoader from "./StoryLoader";
 import StoryPlayer from "./StoryPlayer";
 
 import "./App.scss";
@@ -52,6 +52,12 @@ class App extends Component {
     );
   };
   render() {
+    console.log(process.env);
+    const playerProps = {
+      debug: !process.env.REACT_APP_IS_PLAYER,
+      editor: !process.env.REACT_APP_IS_PLAYER
+    };
+
     return (
       <Router className="App" ref={r => (this.router = r)}>
         <React.Fragment>
@@ -61,7 +67,10 @@ class App extends Component {
               path="/story/"
               render={() =>
                 this.state.storyData ? (
-                  <StoryPlayer debug editor storyData={this.state.storyData} />
+                  <StoryPlayer
+                    {...playerProps}
+                    storyData={this.state.storyData}
+                  />
                 ) : (
                   <Redirect to="/" />
                 )
@@ -71,7 +80,7 @@ class App extends Component {
               exact
               path="/"
               render={() => (
-                <StoryList
+                <StoryLoader
                   onFileLoaded={this.fileUploaded}
                   onFilePathSet={this.loadFile}
                   onNew={this.startNewStory}

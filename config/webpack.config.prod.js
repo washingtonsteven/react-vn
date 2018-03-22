@@ -28,6 +28,7 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== "false";
 const publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
+const playerOnly = env.raw.REACT_APP_IS_PLAYER;
 
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
@@ -60,7 +61,7 @@ module.exports = {
   entry: [require.resolve("./polyfills"), paths.appIndexJs],
   output: {
     // The build folder.
-    path: paths.appBuild,
+    path: playerOnly ? paths.player.appBuild : paths.appBuild,
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.

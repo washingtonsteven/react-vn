@@ -53,7 +53,6 @@ module.exports = {
   publicUrl: getPublicUrl(resolveApp("package.json")),
   servedPath: getServedPath(resolveApp("package.json")),
   player: {
-    appIndexJs: resolveApp("src/index_player.js"),
-    appBuild: resolveApp("player_build")
+    appBuild: resolveApp("build_player")
   }
 };

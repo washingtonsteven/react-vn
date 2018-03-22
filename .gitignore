@@ -9,6 +9,7 @@
 # production
 /build
 /player_build
+/build_player
 
 # misc
 .DS_Store
