@@ -1,3 +1,5 @@
+@import "~@@/_var";
+
 .node-link-editor {
   padding: 1rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
@@ -46,8 +48,15 @@
 
   .radio-group {
     label {
-      border: solid 1px #aaa;
+      border: solid 1px $purple_transparent;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      background-color: $purple_transparent !important;
+      color: $purple;
+
+      &.selected {
+        background-color: $purple !important;
+        color: white;
+      }
     }
     label:first-of-type {
       border-top-left-radius: 0.3rem;

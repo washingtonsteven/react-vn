@@ -30,14 +30,16 @@ class StoryPlayer extends Component {
       <StoryProvider storyData={this.storyData} debug={this.props.debug}>
         <div className="App">
           {this.props.editor && (
-            <div className="edit-toggle">
+            <div
+              className={`edit-toggle ${this.state.editing ? "edit" : "play"}`}
+            >
               <button onClick={this.toggleEditing}>
                 {this.state.editing ? "Play" : "Edit"}
               </button>
             </div>
           )}
           {this.state.editing && this.props.editor ? (
-            <StoryEditor onNodeUpdated={this.nodeUpdated} />
+            <StoryEditor />
           ) : (
             <Story />
           )}

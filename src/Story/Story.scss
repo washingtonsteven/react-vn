@@ -6,14 +6,14 @@
 
     .node-links {
       button.node-link {
-        border-color: $blue;
+        border-color: $sky;
         margin-bottom: 20px;
-        color: $blue;
+        color: $sky;
         display: block;
         width: 100%;
 
         &:hover {
-          background-color: $blue;
+          background-color: $sky;
           color: white;
         }
       }

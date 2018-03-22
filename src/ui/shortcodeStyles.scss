@@ -1,20 +1,30 @@
+@import "~@@/_var";
+
 $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$rainbow: (
+  red: #fea3aa,
+  orange: #f8b88b,
+  yellow: #faf884,
+  green: #baed91,
+  blue: #b2cefe,
+  purple: #f2a2e8
+);
 
 .danger {
-  color: red;
+  color: $red;
 }
 
 .shaky {
   & > * {
     display: inline-block;
-    animation: shake 0.02s infinite alternate backwards;
+    animation: shake 0.05s infinite alternate backwards;
   }
 }
 
 .reallyshaky {
   & > * {
     display: inline-block;
-    animation: reallyshake 0.02s infinite alternate backwards;
+    animation: reallyshake 0.055s infinite alternate backwards;
   }
 }
 
@@ -24,7 +34,7 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     animation: dance 0.7s infinite backwards $easeOutBack;
     @for $i from 1 through 7 {
       &:nth-child(7n + #{$i}) {
-        animation-delay: $i * 0.1s;
+        animation-delay: $i * 0.08s;
       }
     }
   }
@@ -33,26 +43,23 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 .rainbow {
   & > * {
     display: inline-block;
-    &:nth-child(7n + 1) {
-      color: red;
+    &:nth-child(6n + 1) {
+      color: map-get($rainbow, red);
     }
-    &:nth-child(7n + 2) {
-      color: orange;
+    &:nth-child(6n + 2) {
+      color: map-get($rainbow, orange);
     }
-    &:nth-child(7n + 3) {
-      color: yellow;
+    &:nth-child(6n + 3) {
+      color: map-get($rainbow, yellow);
     }
-    &:nth-child(7n + 4) {
-      color: green;
+    &:nth-child(6n + 4) {
+      color: map-get($rainbow, green);
     }
-    &:nth-child(7n + 5) {
-      color: blue;
+    &:nth-child(6n + 5) {
+      color: map-get($rainbow, blue);
     }
-    &:nth-child(7n + 6) {
-      color: indigo;
-    }
-    &:nth-child(7n) {
-      color: violet;
+    &:nth-child(6n) {
+      color: map-get($rainbow, purple);
     }
   }
 }
@@ -68,16 +75,16 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
 @keyframes reallyshake {
   0% {
-    transform: translate(-2px, -2px);
+    transform: translate(-1px, -1px);
   }
   33% {
-    transform: translate(2px, -2px);
+    transform: translate(1px, -1px);
   }
   66% {
-    transform: translate(-2px, 2px);
+    transform: translate(-1px, 1px);
   }
   100% {
-    transform: translat(2px, 2px);
+    transform: translat(1px, 1px);
   }
 }
 

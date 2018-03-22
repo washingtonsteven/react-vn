@@ -38,6 +38,7 @@ class RadioGroup extends Component {
               <label
                 htmlFor={`radiogrp-${o}-${this.state.name}`}
                 key={btoa(`${i}-${o}`)}
+                className={this.state.selected === o ? "selected" : ""}
                 style={
                   this.state.selected === o ? selectedLabelStyle : labelStyle
                 }

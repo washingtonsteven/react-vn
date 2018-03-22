@@ -14,11 +14,11 @@
     border-left: solid 8px transparent;
 
     &:nth-child(2n) {
-      background-color: $dim_yellow;
+      background-color: $sky_transparent;
     }
 
     &:hover {
-      border-color: $yellow;
+      border-color: $sky;
     }
 
     span:first-child {

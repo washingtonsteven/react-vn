@@ -9,9 +9,13 @@ class JSONFileInput extends Component {
       this.fileReader.onload = this.onFileLoad;
       this.fileReader.readAsText(file);
     } else {
-      throw new Error(
-        "JSONFileInput received non-json file. Make sure the MIME-type is 'application/json'"
-      );
+      console.log("Not JSON!");
+      this.props.onError &&
+        this.props.onError(
+          new Error(
+            "JSONFileInput received non-json file. Make sure the MIME-type is 'application/json'"
+          )
+        );
     }
   };
 
@@ -20,16 +24,21 @@ class JSONFileInput extends Component {
       const json = JSON.parse(e.target.result);
       this.props.onFileSelected && this.props.onFileSelected(json);
     } catch (e) {
-      console.error(e);
-      throw new Error("JSONFileInput errored while parsing file.");
+      this.props.onError &&
+        this.props.onError(
+          new Error("JSONFileInput errored while parsing file.")
+        );
     }
   };
 
   render() {
     return (
-      <span>
-        <input type="file" name="file" onChange={this.uploadFile} />
-      </span>
+      <input
+        type="file"
+        name={this.props.name || "file"}
+        id={this.props.name || "file"}
+        onChange={this.uploadFile}
+      />
     );
   }
 }
