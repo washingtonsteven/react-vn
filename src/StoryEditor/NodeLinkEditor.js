@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StoryConsumer } from "@@/data/StoryContext";
 import { NodeLinkTypes, excerpt } from "@@/util";
-import { RadioGroup } from "@@/ui";
+import RadioGroup from "@@/ui/RadioGroup";
 import DeleteButton from "./DeleteButton";
 
 import "./NodeLinkEditor.scss";

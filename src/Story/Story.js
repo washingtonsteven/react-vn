@@ -6,7 +6,7 @@ import InputNodeLink from "./InputNodeLink";
 import { NodeLinkTypes, replaceVariables } from "@@/util";
 import NodeContent from "./NodeContent";
 
-import Debug from "@@/Debug";
+import Debug from "@@/ui/Debug";
 
 import "./Story.scss";
 

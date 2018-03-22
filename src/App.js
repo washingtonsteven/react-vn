@@ -52,7 +52,6 @@ class App extends Component {
     );
   };
   render() {
-    console.log(process.env);
     const playerProps = {
       debug: !process.env.REACT_APP_IS_PLAYER,
       editor: !process.env.REACT_APP_IS_PLAYER

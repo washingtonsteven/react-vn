@@ -1,5 +1,5 @@
 import React from "react";
-import TextScroll from "@@/TextScroll";
+import TextScroll from "@@/ui/TextScroll";
 
 import "./NodeContent.scss";
 
