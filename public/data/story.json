@@ -3,7 +3,10 @@
     "title": "Sample Story",
     "author": "Steve Washington",
     "shortcodes": [
-      { "tag": "lime", "style": { "color": "lime" } },
+      {
+        "tag": "lime",
+        "style": { "color": "lime", "background": "url(http://google.com)" }
+      },
       {
         "tag": "shadow",
         "style": {

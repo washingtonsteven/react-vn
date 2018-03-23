@@ -157,6 +157,6 @@ const camelToDash = str => {
 
 export const toCSS = styleObj => {
   return Object.entries(styleObj).reduce((acc, v) => {
-    return `${acc} ${camelToDash(v[0])}: ${v[1]};`;
+    return `${acc} ${camelToDash(v[0])}: ${v[1].replace("url", "")};`;
   }, "");
 };
