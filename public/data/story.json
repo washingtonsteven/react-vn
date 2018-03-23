@@ -3,12 +3,12 @@
     {
       "root": true,
       "id": "0",
-      "content": "This is page 0 #[dance danger]123456712345671234567[/]",
+      "content": "can i get a uh\n\n\n#[dance rainbow large]boneless pizza[/]",
       "next": [{ "content": "Go on...", "node": "1" }]
     },
     {
       "id": "1",
-      "content": "This is page 1 [tomato]This text has class 'tomato'[/]",
+      "content": "This is page 1 #[tomato]This text has class 'tomato'[/]",
       "next": [
         { "content": "Page 2?", "node": "2" },
         { "content": "...or Page 3?", "node": "3" }

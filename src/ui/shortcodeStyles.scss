@@ -10,6 +10,10 @@ $rainbow: (
   purple: #f2a2e8
 );
 
+.large {
+  font-size: 3rem;
+}
+
 .danger {
   color: $red;
 }
@@ -98,4 +102,8 @@ $rainbow: (
   100% {
     transform: translate(0, 0);
   }
+}
+
+.tomato {
+  color: tomato;
 }

@@ -59,11 +59,31 @@ export const processShortcodes = (content = "") => {
     if (!v) return acc;
     if (i % 4 === 0 && v) acc.push(<span key={i}>{v}</span>);
     else if (i % 4 === 2 && currentTag) {
-      acc.push(
-        <span className={currentTag} key={i}>
-          {v.split("").map((l, j) => <span key={`${i}.${j}`}>{l}</span>)}
-        </span>
-      );
+      const splitContent = v
+        .split("")
+        .map((l, j) => <span key={`${i}.${j}`}>{l}</span>);
+      if (currentTag.indexOf("link") === 0) {
+        const splitTag = currentTag.split(" ");
+        const tag = splitTag.slice(0, splitTag.length - 1).join(" ");
+        const href = splitTag[splitTag.length - 1];
+        acc.push(
+          <a
+            href={href}
+            className={`link ${tag}`}
+            key={i}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {splitContent}
+          </a>
+        );
+      } else {
+        acc.push(
+          <span className={currentTag} key={i}>
+            {splitContent}
+          </span>
+        );
+      }
       currentTag = "";
     } else if (i % 4 === 1) {
       currentTag = v;
