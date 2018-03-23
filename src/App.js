@@ -13,6 +13,14 @@ import StoryPlayer from "./StoryPlayer";
 
 import "./App.scss";
 
+const blankStory = {
+  nodes: [],
+  meta: {
+    title: "My New Story",
+    author: "Quizlax Boronatl"
+  }
+};
+
 const MenuBar = () => (
   <nav className="menu-bar">
     <h1>React VN</h1>
@@ -47,7 +55,7 @@ class App extends Component {
   };
   startNewStory = () => {
     this.setState(
-      state => ({ ...state, storyData: { nodes: [] } }),
+      state => ({ ...state, storyData: blankStory }),
       () => this.router.history && this.router.history.push("/story")
     );
   };

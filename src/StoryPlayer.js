@@ -14,6 +14,7 @@ class StoryPlayer extends Component {
   };
 
   injectStyles(shortcodes) {
+    if (!shortcodes) return;
     const s = document.createElement("style");
     s.innerText = shortcodes.reduce((acc, v) => {
       return `${acc} .${v.tag}{${toCSS(v.style)}}`;
