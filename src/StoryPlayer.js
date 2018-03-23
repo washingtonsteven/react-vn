@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Story from "./Story/Story";
 import StoryEditor from "./StoryEditor/StoryEditor";
 import { StoryProvider } from "@@/data/StoryContext";
+import { toCSS } from "@@/util";
 
 class StoryPlayer extends Component {
   state = { editing: false };
@@ -12,9 +13,18 @@ class StoryPlayer extends Component {
     });
   };
 
+  injectStyles(shortcodes) {
+    const s = document.createElement("style");
+    s.innerText = shortcodes.reduce((acc, v) => {
+      return `${acc} .${v.tag}{${toCSS(v.style)}}`;
+    }, "");
+    document.getElementsByTagName("head")[0].appendChild(s);
+  }
+
   componentDidMount() {
     if (this.props.storyData) {
       this.storyData = this.props.storyData;
+      this.injectStyles(this.props.storyData.meta.shortcodes);
       this.setState(state => ({ ...state, loaded: true }));
     } else {
       throw new Error(

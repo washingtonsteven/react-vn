@@ -150,3 +150,13 @@ const DEFAULT = "default";
 const INPUT = "input";
 const INVENTORY = "inventory";
 export const NodeLinkTypes = { DEFAULT, INPUT, INVENTORY };
+
+const camelToDash = str => {
+  return str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+};
+
+export const toCSS = styleObj => {
+  return Object.entries(styleObj).reduce((acc, v) => {
+    return `${acc} ${camelToDash(v[0])}: ${v[1]};`;
+  }, "");
+};
