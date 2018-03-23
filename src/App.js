@@ -58,8 +58,8 @@ class App extends Component {
     };
 
     return (
-      <Router className="App" ref={r => (this.router = r)}>
-        <React.Fragment>
+      <Router ref={r => (this.router = r)}>
+        <div className="App">
           <MenuBar />
           <Switch>
             <Route
@@ -88,7 +88,7 @@ class App extends Component {
             />
             <Route render={() => <Redirect to="/" />} />
           </Switch>
-        </React.Fragment>
+        </div>
       </Router>
     );
   }
