@@ -6,6 +6,14 @@ class ShortcodeEditor extends React.Component {
     this.props.onShortcodeUpdated &&
       this.props.onShortcodeUpdated(newShortcode, this.props.shortcodeIndex);
   };
+  addNewStyle = () => {
+    const newShortcode = {
+      ...this.props.shortcode,
+      style: { ...this.props.shortcode.style, newProperty: "newValue" }
+    };
+    this.props.onShortcodeUpdated &&
+      this.props.onShortcodeUpdated(newShortcode, this.props.shortcodeIndex);
+  };
   onStyleChanged(e, styleProp, index) {
     const newStyle = Object.entries({ ...this.props.shortcode.style });
     newStyle[index] =
@@ -56,6 +64,7 @@ class ShortcodeEditor extends React.Component {
               </label>
             </div>
           ))}
+        <button onClick={this.addNewStyle}>Add New Style</button>
       </div>
     );
   }

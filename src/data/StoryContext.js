@@ -56,6 +56,12 @@ export class StoryProvider extends React.Component {
         };
       });
     },
+    addBlankShortcode: () => {
+      this.actions.updateShortcode(
+        { tag: "", style: {} },
+        (this.state.storyData.meta.shortcodes || []).length
+      );
+    },
     addBlankNode: () =>
       this.actions.updateNode({
         id: generateId(this.state.storyData.nodes),

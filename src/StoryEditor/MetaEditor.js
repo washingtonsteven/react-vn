@@ -11,7 +11,12 @@ class MetaEditor extends React.Component {
       <StoryConsumer>
         {({
           state: { storyData: { meta = {} } },
-          actions: { updateStoryTitle, updateStoryAuthor, updateShortcode }
+          actions: {
+            updateStoryTitle,
+            updateStoryAuthor,
+            updateShortcode,
+            addBlankShortcode
+          }
         }) => {
           return (
             <div className="meta-editor">
@@ -43,6 +48,7 @@ class MetaEditor extends React.Component {
                       onShortcodeUpdated={(s, i) => updateShortcode(s, i)}
                     />
                   ))}
+                  <button onClick={addBlankShortcode}>Add New Shortcode</button>
                 </div>
               )}
 
