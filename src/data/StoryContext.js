@@ -24,6 +24,38 @@ export class StoryProvider extends React.Component {
     };
   }
   actions = {
+    updateStoryTitle: title =>
+      this.setState(state => ({
+        ...state,
+        storyData: {
+          ...state.storyData,
+          meta: { ...state.storyData.meta, title }
+        }
+      })),
+    updateStoryAuthor: author =>
+      this.setState(state => ({
+        ...state,
+        storyData: {
+          ...state.storyData,
+          meta: { ...state.storyData.meta, author }
+        }
+      })),
+    updateShortcode: (shortcode, index) => {
+      this.setState(state => {
+        const shortcodes = [...(state.storyData.meta.shortcodes || [])];
+        shortcodes[index] = shortcode;
+        return {
+          ...state,
+          storyData: {
+            ...state.storyData,
+            meta: {
+              ...state.storyData.meta,
+              shortcodes
+            }
+          }
+        };
+      });
+    },
     addBlankNode: () =>
       this.actions.updateNode({
         id: generateId(this.state.storyData.nodes),

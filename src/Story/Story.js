@@ -5,6 +5,7 @@ import NodeLink from "./NodeLink";
 import InputNodeLink from "./InputNodeLink";
 import { NodeLinkTypes, replaceVariables } from "@@/util";
 import NodeContent from "./NodeContent";
+import StoryMeta from "./StoryMeta";
 
 import Debug from "@@/ui/Debug";
 
@@ -57,10 +58,11 @@ class Story extends Component {
     });
 
   render() {
+    const { debug } = this.props;
     return (
       <StoryConsumer>
         {({
-          state: { storyData: { nodes = [] }, meta: { debug } },
+          state: { storyData: { nodes = [] } },
           helpers: { getNode, getRootNode, getItems, getVariables }
         }) => {
           const currentNode =
@@ -71,6 +73,7 @@ class Story extends Component {
 
           return (
             <div className="story">
+              <StoryMeta />
               {currentNode && (
                 <div className="node">
                   <NodeContent

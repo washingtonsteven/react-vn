@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Story from "./Story/Story";
 import StoryEditor from "./StoryEditor/StoryEditor";
 import { StoryProvider } from "@@/data/StoryContext";
-import { toCSS } from "@@/util";
 
 class StoryPlayer extends Component {
   state = { editing: false };
@@ -13,19 +12,9 @@ class StoryPlayer extends Component {
     });
   };
 
-  injectStyles(shortcodes) {
-    if (!shortcodes) return;
-    const s = document.createElement("style");
-    s.innerText = shortcodes.reduce((acc, v) => {
-      return `${acc} .${v.tag}{${toCSS(v.style)}}`;
-    }, "");
-    document.getElementsByTagName("head")[0].appendChild(s);
-  }
-
   componentDidMount() {
     if (this.props.storyData) {
       this.storyData = this.props.storyData;
-      this.injectStyles(this.props.storyData.meta.shortcodes);
       this.setState(state => ({ ...state, loaded: true }));
     } else {
       throw new Error(
@@ -38,7 +27,7 @@ class StoryPlayer extends Component {
     if (!this.state.loaded) return <div>Loading...</div>;
 
     return (
-      <StoryProvider storyData={this.storyData} debug={this.props.debug}>
+      <StoryProvider storyData={this.storyData}>
         <div className="story-player">
           {this.props.editor && (
             <div
@@ -52,7 +41,7 @@ class StoryPlayer extends Component {
           {this.state.editing && this.props.editor ? (
             <StoryEditor />
           ) : (
-            <Story />
+            <Story debug={this.props.debug} />
           )}
         </div>
       </StoryProvider>
