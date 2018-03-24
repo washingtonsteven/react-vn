@@ -9,4 +9,3 @@ deploy:
   file: build_player/player.zip
   on:
     repo: washingtonsteven/react-vn
-    tags: true
