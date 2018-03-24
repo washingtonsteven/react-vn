@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { StoryConsumer } from "@@/data/StoryContext";
-import { NodeLinkTypes, excerpt } from "@@/util";
+import { NodeLinkTypes } from "@@/util";
 import RadioGroup from "@@/ui/RadioGroup";
 import DeleteButton from "./DeleteButton";
+import NodeSelector from "./NodeSelector";
 
 import "./NodeLinkEditor.scss";
 
@@ -15,7 +16,8 @@ class NodeLinkEditor extends Component {
       <StoryConsumer>
         {({
           state: { storyData: { nodes } },
-          actions: { updateNodeLink, removeNodeLink }
+          actions: { updateNodeLink, removeNodeLink },
+          helpers: { getNode }
         }) => {
           const { nodeId, linkIndex, link } = this.props;
           return (
@@ -39,25 +41,13 @@ class NodeLinkEditor extends Component {
                   }
                 />
               </label>
-              <label htmlFor="node-link-node-target">
-                <span>Target Node</span>
-                <select
-                  name="node-link-node-target"
-                  defaultValue={link.node}
-                  onChange={e =>
-                    updateNodeLink(nodeId, linkIndex, {
-                      ...link,
-                      node: e.target.value
-                    })
-                  }
-                >
-                  {nodes.map(node => (
-                    <option value={node.id} key={node.id}>
-                      {node.id} - {excerpt(node.content)}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <NodeSelector
+                nodes={nodes}
+                selectedNode={getNode(link.node)}
+                onChange={n =>
+                  updateNodeLink(nodeId, linkIndex, { ...link, node: n.id })
+                }
+              />
               <div className="node-link-type-options">
                 <RadioGroup
                   options={Object.values(NodeLinkTypes)}
