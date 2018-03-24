@@ -1,6 +1,7 @@
-install: npm install
+language: 'nodejs'
+node_js: 'node'
 script:
-  - npm run buildplayer
+  - yarn buildplayer
 deploy:
   provider: releases
   api_key:
