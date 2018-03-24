@@ -10,4 +10,4 @@ deploy:
   file: build_player/player.zip
   on:
     repo: washingtonsteven/react-vn
-    branch: archiver
+    tags: true
