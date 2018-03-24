@@ -39,6 +39,8 @@ const playerOnly = process.env.REACT_APP_IS_PLAYER;
 
 if (playerOnly) paths.appBuild = paths.player.appBuild;
 
+const archiver = require("archiver");
+
 // Warn and crash if required files are missing
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
@@ -116,6 +118,19 @@ function build(previousFileSizes) {
       if (err) {
         return reject(err);
       }
+
+      // create .zip
+      if (playerOnly) {
+        const zipOutput = fs.createWriteStream(`${paths.appBuild}/player.zip`);
+        const playerArchive = archiver("zip", { zlib: { level: 9 } });
+        playerArchive.on("error", err =>
+          console.log(chalk.red("Failed to build zip archive. Skipping..."))
+        );
+        playerArchive.pipe(zipOutput);
+        playerArchive.directory(paths.appBuild, false);
+        playerArchive.finalize();
+      }
+
       const messages = formatWebpackMessages(stats.toJson({}, true));
       if (messages.errors.length) {
         // Only keep the first error. Others are often indicative
