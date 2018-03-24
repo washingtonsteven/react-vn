@@ -1,4 +1,5 @@
 import React from "react";
+import DeleteButton from "./DeleteButton";
 
 class ShortcodeEditor extends React.Component {
   onTagChanged = e => {
@@ -28,6 +29,13 @@ class ShortcodeEditor extends React.Component {
     this.props.onShortcodeUpdated &&
       this.props.onShortcodeUpdated(newShortcode, this.props.shortcodeIndex);
   }
+  deleteStyle = property => {
+    const newShortcode = { ...this.props.shortcode };
+    delete newShortcode.style[property];
+
+    this.props.onShortcodeUpdated &&
+      this.props.onShortcodeUpdated(newShortcode, this.props.shortcodeIndex);
+  };
   render() {
     const { shortcode: { tag, style } } = this.props;
     return (
@@ -44,6 +52,11 @@ class ShortcodeEditor extends React.Component {
         {style &&
           Object.entries(style).map(([property, value], i) => (
             <div className="shortcode-style-editor" key={i}>
+              <DeleteButton
+                className="delete-style"
+                itemName="Style"
+                onDeleteConfirmed={() => this.deleteStyle(property)}
+              />
               <label htmlFor="shortcode-style-property">
                 <span>Shortcode Style Property</span>
                 <input
