@@ -51,6 +51,7 @@ class NodeLinkEditor extends Component {
               <div className="node-link-type-options">
                 <RadioGroup
                   options={Object.values(NodeLinkTypes)}
+                  selectedItem={link.type}
                   label="NodeLink type"
                   onChange={v =>
                     updateNodeLink(nodeId, linkIndex, { ...link, type: v })

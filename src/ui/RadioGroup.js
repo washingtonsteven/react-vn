@@ -21,7 +21,10 @@ const radioButtonStyle = {
 };
 
 class RadioGroup extends Component {
-  state = { selected: this.props.options[0], name: uuid() };
+  state = {
+    selected: this.props.selectedItem || this.props.options[0],
+    name: uuid()
+  };
   changeSelection = e =>
     this.setState({ ...this.state, selected: e.target.value }, this.emitChange);
   emitChange = () =>

@@ -2,6 +2,8 @@
 
 ## Visual Novel / Text Adventure Player and Editor
 
+[![Build Status](https://travis-ci.org/washingtonsteven/react-vn.svg?branch=master)](https://travis-ci.org/washingtonsteven/react-vn)
+
 ### About
 
 This is a Visual Novel / Text Adventure Player and Editor for use on the web. It is React based (hence the name), and the project is scaffolded with [Create React App](https://github.com/facebook/create-react-app). As such, edits to the codebase can use a lot of the tools that the CRA team has made available.
