@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { modalNode } from "@@";
+import { modalNode } from "@@/util";
 import "./Modal.scss";
 
 const Modal = props =>

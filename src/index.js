@@ -21,6 +21,3 @@ fontawesome.library.add(
 
 ReactDOM.render(<App />, document.getElementById("root"));
 // registerServiceWorker();
-
-export const modalNode = document.getElementById("modal-root");
-export const styleNode = document.getElementById("style-node");

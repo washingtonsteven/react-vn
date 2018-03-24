@@ -1,5 +1,8 @@
 import React from "react"; // needed for `processShortcodes`, below
 
+export const modalNode = document.getElementById("modal-root");
+export const styleNode = document.getElementById("style-node");
+
 /*
  * replaceVariables(content, customData)
  * 

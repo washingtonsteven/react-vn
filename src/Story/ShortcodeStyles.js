@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { toCSS } from "@@/util";
-import { styleNode } from "@@";
+import { toCSS, styleNode } from "@@/util";
 
 class ShortcodeStyles extends React.Component {
   render() {
