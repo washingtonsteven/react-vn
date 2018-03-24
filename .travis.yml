@@ -1,5 +1,6 @@
-language: 'nodejs'
-node_js: 'node'
+language: node_js
+node_js: 
+  - "node"
 install: yarn install
 script:
   - yarn buildplayer
