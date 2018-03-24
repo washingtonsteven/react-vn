@@ -9,7 +9,6 @@ class JSONFileInput extends Component {
       this.fileReader.onload = this.onFileLoad;
       this.fileReader.readAsText(file);
     } else {
-      console.log("Not JSON!");
       this.props.onError &&
         this.props.onError(
           new Error(
@@ -38,6 +37,7 @@ class JSONFileInput extends Component {
         name={this.props.name || "file"}
         id={this.props.name || "file"}
         onChange={this.uploadFile}
+        accept="application/json"
       />
     );
   }

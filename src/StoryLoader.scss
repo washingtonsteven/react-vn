@@ -5,26 +5,15 @@
     width: 100%;
     padding: 5px 0;
     text-align: center;
-
-    & > input {
-      width: 60%;
-      min-width: 500px;
-      margin: 0 auto;
-    }
-
-    span.error {
-      background-color: $red;
-      border-color: $red;
-      border-radius: 0;
-      border-top-right-radius: 0.3rem;
-      border-bottom-right-radius: 0.3rem;
-      min-width: 30%;
-    }
   }
 
   form {
     display: flex;
     grid-template-areas: "loader button";
+
+    @media (max-width: $mobile_width) {
+      display: block;
+    }
 
     label {
       input {
@@ -38,6 +27,10 @@
       align-self: center;
       justify-self: left;
       margin: 0 0 0 10px;
+
+      @media (max-width: $mobile_width) {
+        margin-left: 0;
+      }
     }
   }
 
@@ -70,6 +63,10 @@
       width: 10%;
       height: 2px;
       background-color: #333;
+
+      @media (max-width: $mobile_small) {
+        display: none;
+      }
     }
 
     &:before {

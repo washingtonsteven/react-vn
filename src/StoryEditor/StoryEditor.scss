@@ -25,5 +25,12 @@
         border-color: $yellow;
       }
     }
+
+    @media (max-width: $mobile_width) {
+      a,
+      button {
+        margin-bottom: 10px;
+      }
+    }
   }
 }

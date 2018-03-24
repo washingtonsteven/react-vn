@@ -104,6 +104,16 @@ label {
   margin: 0.5rem 0;
   outline: none;
 
+  @media (max-width: $mobile_width) {
+    display: grid;
+    grid-template-areas: "label spacer" "input spacer";
+    grid-row-gap: 10px;
+  }
+
+  @media (max-width: $mobile_small) {
+    grid-template-areas: "label" "input";
+  }
+
   & > span {
     grid-area: label;
     text-align: center;
@@ -114,15 +124,29 @@ label {
     border-bottom-left-radius: 0.3rem;
     border: solid 1px $sky;
     border-right-color: transparent;
-    flex: 1;
     padding: 0.5rem 1rem;
-    min-width: 25%;
+
+    @media (max-width: $mobile_width) {
+      display: inline;
+      padding: 5px 10px;
+      font-size: 0.8rem;
+      border-radius: 0.3rem;
+    }
   }
 
   input,
   textarea,
   select {
     border: solid 1px $sky;
+    flex: 1 1 60%;
+    @media (max-width: $mobile_width) {
+      grid-area: input;
+      grid-column-end: 3;
+      border-radius: 0.3rem;
+    }
+    @media (max-width: $mobile_small) {
+      grid-column-end: 1;
+    }
   }
 
   *:not(:last-child) {
@@ -132,6 +156,10 @@ label {
   *:last-child {
     border-top-right-radius: 0.3rem;
     border-bottom-right-radius: 0.3rem;
+
+    @media (max-width: $mobile_width) {
+      border-radius: 0.3rem;
+    }
   }
 }
 

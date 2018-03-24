@@ -26,6 +26,13 @@
     border-radius: 0;
   }
 
+  label {
+    & > span {
+      background-color: $purple;
+      border-color: $purple;
+    }
+  }
+
   label[for="node-link-node-target"],
   label[for="action"] {
     position: relative;
@@ -43,6 +50,10 @@
       top: 50%;
       right: 2%;
       transform: translate(0, -50%);
+
+      @media (max-width: $mobile_width) {
+        top: 78%;
+      }
     }
   }
 
@@ -52,6 +63,13 @@
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
       background-color: $purple_transparent !important;
       color: $purple;
+
+      @media (max-width: $mobile_width) {
+        font-weight: normal !important;
+        border-radius: 0.3rem !important;
+        border-color: $purple !important;
+        margin: 0 10px 5px;
+      }
 
       &.selected {
         background-color: $purple !important;

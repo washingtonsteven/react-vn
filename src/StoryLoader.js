@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import JSONFileInput from "./ui/JSONFileInput";
 import "./StoryLoader.scss";
+import ErrorMessage from "@@/ui/ErrorMessage";
+
 class StoryLoader extends Component {
   state = { jsonURL: "data/story.json" };
 
@@ -10,9 +12,14 @@ class StoryLoader extends Component {
         ...state,
         error: "Supplied JSON must have a `nodes` property"
       }));
-      return;
+    } else if (!json.meta) {
+      this.setState(state => ({
+        ...state,
+        error: "Supplies JSON must have a `meta` property"
+      }));
+    } else {
+      this.props.onFileLoaded && this.props.onFileLoaded(json);
     }
-    this.props.onFileLoaded && this.props.onFileLoaded(json);
   };
 
   loadFile = e => {
@@ -22,8 +29,6 @@ class StoryLoader extends Component {
   };
 
   onLoadError = error => {
-    console.log("setting error state");
-    console.log(error);
     this.setState(state => ({ ...state, error: error.message }));
   };
 
@@ -31,6 +36,8 @@ class StoryLoader extends Component {
     const jsonURL = e.target.value;
     this.setState(state => ({ ...state, jsonURL }));
   };
+
+  clearError = () => this.setState(state => ({ ...state, error: null }));
 
   render() {
     return (
@@ -49,8 +56,12 @@ class StoryLoader extends Component {
               onError={this.onLoadError}
               name="story-file-loader"
             />
-            {this.state.error && <span class="error">{this.state.error}</span>}
           </label>
+          {this.state.error && (
+            <ErrorMessage onClose={this.clearError}>
+              {this.state.error}
+            </ErrorMessage>
+          )}
         </div>
         <div className="separator">Or</div>
         <div>

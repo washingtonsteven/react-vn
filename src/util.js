@@ -103,7 +103,7 @@ export const processShortcodes = (content = "") => {
  * This function will trim `str` to the desired length, set as `EXCERPT_LENGTH`.
  * If str is longer than `EXCERPT_LENGTH`, ellipses (&hellip;) are added to the returned string.
  */
-export const EXCERPT_LENGTH = 80;
+export const EXCERPT_LENGTH = 45;
 export const excerpt = str => {
   return str && str.substring
     ? str.substring(0, EXCERPT_LENGTH) +

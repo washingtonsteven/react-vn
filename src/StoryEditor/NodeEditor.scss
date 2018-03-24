@@ -1,6 +1,12 @@
+@import "~@@/_var";
+
 .node-editor {
   padding: 1.5rem 1rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: $mobile_width) {
+    box-shadow: none;
+  }
 
   & > *:not(label) {
     display: block;
@@ -24,6 +30,10 @@
     border-bottom-right-radius: 0.3rem;
     border-left-color: transparent;
     align-self: center;
+
+    @media (max-width: $mobile_width) {
+      border-left-color: #aaa;
+    }
   }
 
   textarea {
