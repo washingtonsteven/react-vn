@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handles an load error from JSONFileInput 1`] = `
+<div
+  className="story-loader"
+>
+  <button
+    onClick={[Function]}
+  >
+    New Story
+  </button>
+  <div
+    className="separator"
+  >
+    Or
+  </div>
+  <div>
+    <label
+      htmlFor="story-file-loader"
+    >
+      <span>
+        Upload a .json story file
+      </span>
+      <input
+        accept="application/json"
+        id="story-file-loader"
+        name="story-file-loader"
+        onChange={[Function]}
+        type="file"
+      />
+    </label>
+  </div>
+  <div
+    className="separator"
+  >
+    Or
+  </div>
+  <div>
+    <form
+      onSubmit={[Function]}
+    >
+      <label
+        htmlFor="url-loader"
+      >
+        <span>
+          Enter a URL for a .json story file
+        </span>
+        <input
+          id="url-loader"
+          name="url-loader"
+          onChange={[Function]}
+          placeholder="JSON url or serverpath"
+          type="text"
+          value="data/story.json"
+        />
+      </label>
+      <button>
+        Load!
+      </button>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`renders without crashing 1`] = `
+<div
+  className="story-loader"
+>
+  <button
+    onClick={[Function]}
+  >
+    New Story
+  </button>
+  <div
+    className="separator"
+  >
+    Or
+  </div>
+  <div>
+    <label
+      htmlFor="story-file-loader"
+    >
+      <span>
+        Upload a .json story file
+      </span>
+      <input
+        accept="application/json"
+        id="story-file-loader"
+        name="story-file-loader"
+        onChange={[Function]}
+        type="file"
+      />
+    </label>
+  </div>
+  <div
+    className="separator"
+  >
+    Or
+  </div>
+  <div>
+    <form
+      onSubmit={[Function]}
+    >
+      <label
+        htmlFor="url-loader"
+      >
+        <span>
+          Enter a URL for a .json story file
+        </span>
+        <input
+          id="url-loader"
+          name="url-loader"
+          onChange={[Function]}
+          placeholder="JSON url or serverpath"
+          type="text"
+          value="data/story.json"
+        />
+      </label>
+      <button>
+        Load!
+      </button>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`updates file url path 1`] = `
+<div
+  className="story-loader"
+>
+  <button
+    onClick={[Function]}
+  >
+    New Story
+  </button>
+  <div
+    className="separator"
+  >
+    Or
+  </div>
+  <div>
+    <label
+      htmlFor="story-file-loader"
+    >
+      <span>
+        Upload a .json story file
+      </span>
+      <input
+        accept="application/json"
+        id="story-file-loader"
+        name="story-file-loader"
+        onChange={[Function]}
+        type="file"
+      />
+    </label>
+  </div>
+  <div
+    className="separator"
+  >
+    Or
+  </div>
+  <div>
+    <form
+      onSubmit={[Function]}
+    >
+      <label
+        htmlFor="url-loader"
+      >
+        <span>
+          Enter a URL for a .json story file
+        </span>
+        <input
+          id="url-loader"
+          name="url-loader"
+          onChange={[Function]}
+          placeholder="JSON url or serverpath"
+          type="text"
+          value="data/story.json"
+        />
+      </label>
+      <button>
+        Load!
+      </button>
+    </form>
+  </div>
+</div>
+`;
