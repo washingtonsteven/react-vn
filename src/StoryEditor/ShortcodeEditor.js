@@ -36,10 +36,19 @@ class ShortcodeEditor extends React.Component {
     this.props.onShortcodeUpdated &&
       this.props.onShortcodeUpdated(newShortcode, this.props.shortcodeIndex);
   };
+  deleteConfirmed = () => {
+    this.props.onShortcodeDeleted &&
+      this.props.onShortcodeDeleted(this.props.shortcodeIndex);
+  };
   render() {
     const { shortcode: { tag, style } } = this.props;
     return (
       <div className="shortcode-editor">
+        <DeleteButton
+          className="delete-shortcode"
+          itemName="Shortcode"
+          onDeleteConfirmed={this.deleteConfirmed}
+        />
         <label htmlFor="shortcode-tag">
           <span>Shortcode Tag</span>
           <input

@@ -62,6 +62,23 @@ export class StoryProvider extends React.Component {
         (this.state.storyData.meta.shortcodes || []).length
       );
     },
+    deleteShortcode: idx => {
+      this.setState(state => {
+        const shortcodes = [...(state.storyData.meta.shortcodes || [])].filter(
+          (s, i) => i !== idx
+        );
+        return {
+          ...state,
+          storyData: {
+            ...state.storyData,
+            meta: {
+              ...state.storyData.meta,
+              shortcodes
+            }
+          }
+        };
+      });
+    },
     addBlankNode: () =>
       this.actions.updateNode({
         id: generateId(this.state.storyData.nodes),

@@ -15,7 +15,8 @@ class MetaEditor extends React.Component {
             updateStoryTitle,
             updateStoryAuthor,
             updateShortcode,
-            addBlankShortcode
+            addBlankShortcode,
+            deleteShortcode
           }
         }) => {
           return (
@@ -45,7 +46,8 @@ class MetaEditor extends React.Component {
                       key={i}
                       shortcode={s}
                       shortcodeIndex={i}
-                      onShortcodeUpdated={(s, i) => updateShortcode(s, i)}
+                      onShortcodeUpdated={(sh, idx) => updateShortcode(sh, idx)}
+                      onShortcodeDeleted={index => deleteShortcode(index)}
                     />
                   ))}
                   <button onClick={addBlankShortcode}>Add New Shortcode</button>
