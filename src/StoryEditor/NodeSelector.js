@@ -41,7 +41,10 @@ class NodeSelector extends React.Component {
                   .filter(
                     n =>
                       !inputValue ||
-                      n.content.toLowerCase().includes(inputValue.toLowerCase())
+                      n.content
+                        .toLowerCase()
+                        .includes(inputValue.toLowerCase()) ||
+                      n.id.toLowerCase().includes(inputValue.toLowerCase())
                   )
                   .map((n, i) => (
                     <div

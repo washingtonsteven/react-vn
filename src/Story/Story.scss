@@ -14,6 +14,8 @@
     margin: 35px auto;
 
     .node-links {
+      display: flex;
+
       button.node-link {
         border-color: $sky;
         margin-bottom: 20px;
