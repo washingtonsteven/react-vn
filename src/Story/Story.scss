@@ -1,6 +1,15 @@
 @import "~@@/_var";
 
 .story {
+  .story-meta {
+    h1 {
+      font-size: 1.5rem;
+
+      .author {
+        font-size: 0.8rem;
+      }
+    }
+  }
   .node {
     margin: 35px auto;
 

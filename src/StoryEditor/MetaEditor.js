@@ -1,5 +1,4 @@
 import React from "react";
-import Debug from "@@/ui/Debug";
 import "./MetaEditor.scss";
 
 import { StoryConsumer } from "@@/data/StoryContext";
@@ -50,11 +49,9 @@ class MetaEditor extends React.Component {
                       onShortcodeDeleted={index => deleteShortcode(index)}
                     />
                   ))}
-                  <button onClick={addBlankShortcode}>Add New Shortcode</button>
                 </div>
               )}
-
-              <Debug>{() => <pre>{JSON.stringify(meta, null, 1)}</pre>}</Debug>
+              <button onClick={addBlankShortcode}>Add New Shortcode</button>
             </div>
           );
         }}

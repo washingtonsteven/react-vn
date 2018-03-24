@@ -8,8 +8,9 @@ class StoryMeta extends React.Component {
       <StoryConsumer>
         {({ state: { storyData: { meta } } }) => (
           <div className="story-meta">
-            <h1>{meta.title}</h1>
-            <h5>{meta.author}</h5>
+            <h1>
+              {meta.title} <span className="author">by {meta.author}</span>
+            </h1>
             <ShortcodeStyles shortcodes={meta.shortcodes} />
           </div>
         )}

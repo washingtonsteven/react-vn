@@ -5,6 +5,8 @@ import { styleNode } from "@@";
 
 class ShortcodeStyles extends React.Component {
   render() {
+    if (!this.props.shortcodes) return "";
+
     const styleContent = this.props.shortcodes.reduce((acc, v) => {
       return `${acc} .${v.tag}{${toCSS(v.style)}}`;
     }, "");
