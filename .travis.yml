@@ -8,5 +8,6 @@ deploy:
   api_key:
     secure: ZX2KfmucpZepwv+f8qaX+b/rCbe8TgLQJnDd3UiI6uiuDmzWnflUMzH9FzZ2SDxzcZ7BZzlMiVx9RN2bRnICT7PTYZ6orhlzFs/1ZNzhF2vr4Q1IpKumxxn95LxQlYzvrR7ndVtjOq/d2euAVB7iDvtvad4e/mw5Da64NGTr7QfpW0t6mcSSydOcVbCc5qvHbh7AkEqdWhbzB0n/0e+j/9RgL7COnnYhXE10WujkXAaeJtGiZpVuXOhUqQ1X+9B48iTlq9LwbNW3cyThfEA0PQUrPqTeatIRQ9xlQKndwp8n9U+Fn7FoImq2vRN+bEzVZmblUZhP2EP0eW/VhibmkhqgxUIXZKpWvKffzpVxAP6rTyHEbrp+e7xi18CVHqrccudCRsLajq4QyAAwMWYy3vrOFJJA3VeXE+L/NAJeS9RNtTExQga7rB+jq9AGy0fsFqVBZY0GxB+32U7NQgxWR8FxkzWL23t78ShocSkL79UWCp8/89/XKHR7gEs+bOWLE7A9nPlsnWdqSZheFPUZn4c7kg0FwaqH3O5F79iLOvUo3vPF2Po233ORVjn9h7XepOiBwIsjolgUkeTwns9e3YgW0LRXLl1NZwWz7GGJ0Z6kK8V7HfcEpZLBKaEeTtnb4SGpgUekwoGn1PpHGYhA0w8pA2H4EHQZarfc7tm3h7E=
   file: build_player/player.zip
+  skip_cleanup: true
   on:
-    repo: washingtonsteven/react-vn
+    tags: true
