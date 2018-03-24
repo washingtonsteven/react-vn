@@ -1,5 +1,6 @@
 import React from "react";
 import DeleteButton from "./DeleteButton";
+import "./ShortcodeEditor.scss";
 
 class ShortcodeEditor extends React.Component {
   onTagChanged = e => {
@@ -49,6 +50,7 @@ class ShortcodeEditor extends React.Component {
           itemName="Shortcode"
           onDeleteConfirmed={this.deleteConfirmed}
         />
+        <h3>Shortcode: {tag}</h3>
         <label htmlFor="shortcode-tag">
           <span>Shortcode Tag</span>
           <input
@@ -66,24 +68,27 @@ class ShortcodeEditor extends React.Component {
                 itemName="Style"
                 onDeleteConfirmed={() => this.deleteStyle(property)}
               />
-              <label htmlFor="shortcode-style-property">
-                <span>Shortcode Style Property</span>
-                <input
-                  type="text"
-                  defaultValue={property}
-                  id="shortcode-style-property"
-                  onChange={e => this.onStyleChanged(e, "property", i)}
-                />
-              </label>
-              <label htmlFor="shortcode-style-value">
-                <span>Shortcode Style value</span>
-                <input
-                  type="text"
-                  defaultValue={value}
-                  id="shortcode-style-value"
-                  onChange={e => this.onStyleChanged(e, "value", i)}
-                />
-              </label>
+              <h5>Shortcode style: {property}</h5>
+              <form>
+                <label htmlFor="shortcode-style-property">
+                  <span>Property</span>
+                  <input
+                    type="text"
+                    defaultValue={property}
+                    id="shortcode-style-property"
+                    onChange={e => this.onStyleChanged(e, "property", i)}
+                  />
+                </label>
+                <label htmlFor="shortcode-style-value">
+                  <span>Value</span>
+                  <input
+                    type="text"
+                    defaultValue={value}
+                    id="shortcode-style-value"
+                    onChange={e => this.onStyleChanged(e, "value", i)}
+                  />
+                </label>
+              </form>
             </div>
           ))}
         <button onClick={this.addNewStyle}>Add New Style</button>
