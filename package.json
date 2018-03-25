@@ -109,6 +109,7 @@
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
     "css-validator": "^0.8.0",
+    "cypress": "^2.1.0",
     "html-webpack-inline-source-plugin": "^0.0.10",
     "react-test-renderer": "^16.2.0"
   }
