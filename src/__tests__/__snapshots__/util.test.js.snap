@@ -4,26 +4,26 @@ exports[`processShortcodes replaces link shortcodes 1`] = `
 Array [
   <span>
     Let's go to a different 
-</span>,
+  </span>,
   <a
     className="link link"
     href="http://google.com"
     rel="noreferrer noopener"
     target="_blank"
->
+  >
     <span>
-        p
+      p
     </span>
     <span>
-        a
+      a
     </span>
     <span>
-        g
+      g
     </span>
     <span>
-        e
+      e
     </span>
-</a>,
+  </a>,
 ]
 `;
 
@@ -31,60 +31,60 @@ exports[`processShortcodes replaces shortcodes 1`] = `
 Array [
   <span>
     I just want to 
-</span>,
+  </span>,
   <span
     className="dance rainbow"
->
+  >
     <span>
-        D
+      D
     </span>
     <span>
-        A
+      A
     </span>
     <span>
-        N
+      N
     </span>
     <span>
-        C
+      C
     </span>
     <span>
-        E
+      E
     </span>
     <span>
-        !
+      !
     </span>
-</span>,
+  </span>,
   <span>
      link nobody is 
-</span>,
+  </span>,
   <span
     className="shaky"
->
+  >
     <span>
-        w
+      w
     </span>
     <span>
-        a
+      a
     </span>
     <span>
-        t
+      t
     </span>
     <span>
-        c
+      c
     </span>
     <span>
-        h
+      h
     </span>
     <span>
-        i
+      i
     </span>
     <span>
-        n
+      n
     </span>
     <span>
-        g
+      g
     </span>
-</span>,
+  </span>,
 ]
 `;
 

@@ -12,41 +12,33 @@ class StoryPlayer extends Component {
     });
   };
 
-  componentDidMount() {
-    if (this.props.storyData) {
-      this.storyData = this.props.storyData;
-      this.setState(state => ({ ...state, loaded: true }));
-    } else {
-      throw new Error(
-        "Required prop 'storyData' not given to StoryPlayer Component"
-      );
-    }
-  }
-
   render() {
-    if (!this.state.loaded) return <div>Loading...</div>;
-
     return (
-      <StoryProvider storyData={this.storyData}>
-        <div className="story-player">
-          {this.props.editor && (
-            <div
-              className={`edit-toggle ${this.state.editing ? "edit" : "play"}`}
-            >
-              <button onClick={this.toggleEditing}>
-                {this.state.editing ? "Play" : "Edit"}
-              </button>
-            </div>
-          )}
-          {this.state.editing && this.props.editor ? (
-            <StoryEditor />
-          ) : (
-            <Story debug={this.props.debug} />
-          )}
-        </div>
-      </StoryProvider>
+      <div className="story-player">
+        {this.props.editor && (
+          <div
+            className={`edit-toggle ${this.state.editing ? "edit" : "play"}`}
+          >
+            <button onClick={this.toggleEditing}>
+              {this.state.editing ? "Play" : "Edit"}
+            </button>
+          </div>
+        )}
+        {this.state.editing && this.props.editor ? (
+          <StoryEditor />
+        ) : (
+          <Story debug={this.props.debug} />
+        )}
+      </div>
     );
   }
 }
 
-export default StoryPlayer;
+const StoryPlayerWithProvider = props => (
+  <StoryProvider storyData={props.storyData}>
+    <StoryPlayer {...props} />
+  </StoryProvider>
+);
+
+export default StoryPlayerWithProvider;
+export const StoryPlayerWithoutProvider = StoryPlayer;

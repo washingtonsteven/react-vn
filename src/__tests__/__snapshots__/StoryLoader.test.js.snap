@@ -5,7 +5,7 @@ exports[`handles an load error from JSONFileInput 1`] = `
   className="story-loader"
 >
   <button
-    onClick={[Function]}
+    onClick={[MockFunction]}
   >
     New Story
   </button>
@@ -94,7 +94,7 @@ exports[`renders without crashing 1`] = `
   className="story-loader"
 >
   <button
-    onClick={[Function]}
+    onClick={[MockFunction]}
   >
     New Story
   </button>
@@ -156,7 +156,7 @@ exports[`updates file url path 1`] = `
   className="story-loader"
 >
   <button
-    onClick={[Function]}
+    onClick={[MockFunction]}
   >
     New Story
   </button>
