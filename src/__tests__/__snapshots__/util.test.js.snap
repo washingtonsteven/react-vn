@@ -1,12 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`processShortcodes replaces link shortcodes 1`] = `
+Array [
+  <span>
+    Let's go to a different 
+</span>,
+  <a
+    className="link link"
+    href="http://google.com"
+    rel="noreferrer noopener"
+    target="_blank"
+>
+    <span>
+        p
+    </span>
+    <span>
+        a
+    </span>
+    <span>
+        g
+    </span>
+    <span>
+        e
+    </span>
+</a>,
+]
+`;
+
 exports[`processShortcodes replaces shortcodes 1`] = `
 Array [
   <span>
     I just want to 
 </span>,
   <span
-    className="dance"
+    className="dance rainbow"
 >
     <span>
         D
@@ -27,5 +54,38 @@ Array [
         !
     </span>
 </span>,
+  <span>
+     link nobody is 
+</span>,
+  <span
+    className="shaky"
+>
+    <span>
+        w
+    </span>
+    <span>
+        a
+    </span>
+    <span>
+        t
+    </span>
+    <span>
+        c
+    </span>
+    <span>
+        h
+    </span>
+    <span>
+        i
+    </span>
+    <span>
+        n
+    </span>
+    <span>
+        g
+    </span>
+</span>,
 ]
 `;
+
+exports[`processShortcodes returns empty on null passed in 1`] = `null`;

@@ -22,18 +22,37 @@ describe("replaceVariables", () => {
     expect(replaced).toEqual(targetString);
   });
 
-  it("replaceVariables: doesn't replace existing", () => {
+  it("replaceVariables: doesn't replace non-existing", () => {
     let testString = "I'm replacing a #{variable2}";
     let replaced = replaceVariables(testString, variableData);
     expect(replaced).toEqual(testString);
+  });
+
+  it("doesn't fail when nothing is passed in", () => {
+    const replaced = replaceVariables();
+    expect(replaced).toEqual("");
   });
 });
 
 describe("processShortcodes", () => {
   it("replaces shortcodes", () => {
-    const testContent = "I just want to #[dance]DANCE![/]";
+    const testContent =
+      "I just want to #[dance rainbow]DANCE![/] link nobody is #[shaky]watching[/]";
     const shortcodeNode = renderer.create(processShortcodes(testContent));
     const tree = shortcodeNode.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it("replaces link shortcodes", () => {
+    const testContent =
+      "Let's go to a different #[link http://google.com]page[/]";
+    const shortcodeNode = renderer.create(processShortcodes(testContent));
+    const tree = shortcodeNode.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it("returns empty on null passed in", () => {
+    const tree = renderer.create(processShortcodes()).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
