@@ -69,6 +69,7 @@
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
     ],
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
@@ -106,6 +107,8 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "css-validator": "^0.8.0",
     "html-webpack-inline-source-plugin": "^0.0.10",
     "react-test-renderer": "^16.2.0"
   }

@@ -18,7 +18,10 @@ class StoryLoader extends Component {
         error: "Supplies JSON must have a `meta` property"
       }));
     } else {
-      this.props.onFileLoaded && this.props.onFileLoaded(json);
+      this.setState(
+        state => ({ ...state, error: null }),
+        () => this.props.onFileLoaded && this.props.onFileLoaded(json)
+      );
     }
   };
 

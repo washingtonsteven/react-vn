@@ -136,7 +136,7 @@ export const generateId = nodes =>
         Math.max.apply(Math, nodes.map(n => String(+n.id >= 0 ? +n.id : -1))) +
           1
       )
-    : 0;
+    : "0";
 
 /*
  * uuid()
@@ -160,6 +160,7 @@ const camelToDash = str => {
 
 export const toCSS = styleObj => {
   return Object.entries(styleObj).reduce((acc, v) => {
-    return `${acc} ${camelToDash(v[0])}: ${v[1].replace("url", "")};`;
+    if (v[1].indexOf("url") === 0) return acc;
+    return `${acc} ${camelToDash(v[0])}: ${v[1]};`;
   }, "");
 };
