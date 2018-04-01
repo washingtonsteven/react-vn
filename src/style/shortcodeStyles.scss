@@ -1,0 +1,109 @@
+@import "~@@/style/_var";
+
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$rainbow: (
+  red: #fea3aa,
+  orange: #f8b88b,
+  yellow: #faf884,
+  green: #baed91,
+  blue: #b2cefe,
+  purple: #f2a2e8
+);
+
+.large {
+  font-size: 3rem;
+}
+
+.danger {
+  color: $red;
+}
+
+.shaky {
+  & > * {
+    display: inline-block;
+    animation: shake 0.05s infinite alternate backwards;
+  }
+}
+
+.reallyshaky {
+  & > * {
+    display: inline-block;
+    animation: reallyshake 0.055s infinite alternate backwards;
+  }
+}
+
+.dance {
+  & > * {
+    display: inline-block;
+    animation: dance 0.7s infinite backwards $easeOutBack;
+    @for $i from 1 through 7 {
+      &:nth-child(7n + #{$i}) {
+        animation-delay: $i * 0.08s;
+      }
+    }
+  }
+}
+
+.rainbow {
+  & > * {
+    display: inline-block;
+    &:nth-child(6n + 1) {
+      color: map-get($rainbow, red);
+    }
+    &:nth-child(6n + 2) {
+      color: map-get($rainbow, orange);
+    }
+    &:nth-child(6n + 3) {
+      color: map-get($rainbow, yellow);
+    }
+    &:nth-child(6n + 4) {
+      color: map-get($rainbow, green);
+    }
+    &:nth-child(6n + 5) {
+      color: map-get($rainbow, blue);
+    }
+    &:nth-child(6n) {
+      color: map-get($rainbow, purple);
+    }
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(-2px, -2px);
+  }
+  100% {
+    transform: translat(2px, 2px);
+  }
+}
+
+@keyframes reallyshake {
+  0% {
+    transform: translate(-1px, -1px);
+  }
+  33% {
+    transform: translate(1px, -1px);
+  }
+  66% {
+    transform: translate(-1px, 1px);
+  }
+  100% {
+    transform: translat(1px, 1px);
+  }
+}
+
+@keyframes dance {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, -2px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.tomato {
+  color: tomato;
+}

@@ -1,0 +1,14 @@
+@import "~@@/style/_var";
+
+.node-content {
+  margin-bottom: 25px;
+  padding: 35px;
+  border: solid 1px black;
+  font-family: $pixel;
+  background-color: black;
+  color: #fff;
+  font-size: 1.25rem;
+  white-space: pre-wrap;
+  border-radius: 0.3rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}

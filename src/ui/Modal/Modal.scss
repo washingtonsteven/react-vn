@@ -1,0 +1,34 @@
+@import "~@@/style/_var";
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  & > * {
+    position: absolute;
+    background-color: #ddd;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    max-width: 50%;
+    padding: 60px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+
+    @media (max-width: $mobile_width) {
+      max-width: 80%;
+    }
+
+    @media (max-width: $mobile_small) {
+      max-width: 100%;
+    }
+  }
+
+  input {
+    border-bottom: solid 1px white;
+  }
+}

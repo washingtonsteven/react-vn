@@ -1,0 +1,16 @@
+@import "~@@/style/_var";
+
+span.error-message {
+  background-color: $red;
+  border-color: $red;
+  border-radius: 0;
+  border-radius: 0.3rem;
+  color: white;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+
+  .close {
+    padding: 0 5px;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,17 @@
+@import "~@@/style/_var";
+
+.meta-editor {
+  input {
+    width: 100%;
+  }
+
+  button {
+    color: $sky;
+    border-color: $sky;
+
+    &:hover {
+      background-color: $sky;
+      color: white;
+    }
+  }
+}
