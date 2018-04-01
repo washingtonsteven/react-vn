@@ -5,6 +5,7 @@ import NodeLink from "./NodeLink";
 import InputNodeLink from "./InputNodeLink";
 import { NodeLinkTypes, replaceVariables } from "@@/util";
 import NodeContent from "./NodeContent";
+import NodeImage from "./NodeImage";
 import StoryMeta from "./StoryMeta";
 
 import Debug from "@@/ui/Debug";
@@ -76,6 +77,7 @@ class Story extends Component {
               <StoryMeta />
               {currentNode && (
                 <div className="node">
+                  {currentNode.image && <NodeImage path={currentNode.image} />}
                   <NodeContent
                     content={replaceVariables(
                       currentNode.content,
