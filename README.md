@@ -11,7 +11,7 @@ This is a Visual Novel / Text Adventure Player and Editor for use on the web. It
 
 ### Demo
 
-A demo of the editor version of this (with the ability to modify/add nodes) is available at https://react-vn.netlify.com/.
+A demo of the editor version of this (with the ability to modify/add nodes) is available at https://react-vn.netlify.com/. You can load a story.json or click "Load" on the bottom option to load the already-hosted story. Don't worry, no changes you make will affect the hosted story.
 
 ### Getting started
 
