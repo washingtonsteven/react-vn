@@ -8,6 +8,11 @@
 
 This is a Visual Novel / Text Adventure Player and Editor for use on the web. It is React based (hence the name), and the project is scaffolded with [Create React App](https://github.com/facebook/create-react-app). As such, edits to the codebase can use a lot of the tools that the CRA team has made available.
 
+
+### Demo
+
+A demo of the editor version of this (with the ability to modify/add nodes) is available at https://react-vn.netlify.com/.
+
 ### Getting started
 
 This application is split up into two parts, the Editor and the Player. You use the Editor to edit/write your story, and export a .json containing all your story's data. You can then host the .json along with the Player Bundle to share your story.
